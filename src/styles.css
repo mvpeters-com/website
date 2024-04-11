@@ -14,7 +14,7 @@ html,
 .container {
     --padding: 16px;
     position: relative;
-    height: 100%;
+    height: 100vh;
 
     @media (min-width: 768px) {
          --padding: 16px;
@@ -41,18 +41,18 @@ html,
 
 .email {
     position: absolute;
-    left: var(--padding);
-    top: var(--padding);
+    left: var(--padding, 0);
+    top: var(--padding, 0);
 }
 
 .phone {
     position: absolute;
-    right: var(--padding);
-    bottom:var(--padding);
+    right: var(--padding, 0);
+    bottom:var(--padding, 0);
     text-align: right;
 
     @media (min-width: 768px) {
         bottom: initial;
-        top:var(--padding);
+        top:var(--padding, 0);
     }
 }

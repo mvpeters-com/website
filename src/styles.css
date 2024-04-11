@@ -1,7 +1,7 @@
 body {
     margin: 0;
     background-color: #DC502B;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -14,7 +14,7 @@ html,
 .container {
     --padding: 16px;
     position: relative;
-    height: 100vh;
+    height: 100%;
 
     @media (min-width: 768px) {
          --padding: 16px;

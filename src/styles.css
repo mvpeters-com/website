@@ -12,14 +12,12 @@ html,
 }
 
 .container {
-    display: flex;
-    padding: 12px;
-    height: 100vh;
-    box-sizing: border-box;
-    justify-content: space-between;
+    --padding: 16px;
+    position: relative;
+    height: 100%;
 
     @media (min-width: 768px) {
-        padding: 24px;
+         --padding: 16px;
     }
 }
 
@@ -42,14 +40,19 @@ html,
 
 
 .email {
-    align-self: start;
+    position: absolute;
+    left: var(--padding);
+    top: var(--padding);
 }
 
 .phone {
-    align-self: end;
+    position: absolute;
+    right: var(--padding);
+    bottom:var(--padding);
     text-align: right;
 
     @media (min-width: 768px) {
-        align-self: start;
+        bottom: initial;
+        top:var(--padding);
     }
 }

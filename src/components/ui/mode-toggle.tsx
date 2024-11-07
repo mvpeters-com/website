@@ -18,14 +18,14 @@ export function ModeToggle() {
 
     return (
         <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
             onClick={toggleTheme}
             aria-label="Toggle theme"
             className="relative"
         >
-            <Sun className="h-[1.2rem] w-[1.2rem] transition-all dark:absolute dark:opacity-0" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] transition-all opacity-0 dark:opacity-100 dark:relative" />
+            <Sun className="transition-all dark:absolute dark:opacity-0" />
+            <Moon className="absolute transition-all opacity-0 dark:opacity-100 dark:relative" />
         </Button>
     )
 }

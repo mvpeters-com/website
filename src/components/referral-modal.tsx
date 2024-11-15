@@ -1,13 +1,14 @@
 import {
     Dialog,
-    DialogClose, DialogContent, DialogDescription,
+    DialogContent, DialogDescription,
     DialogFooter, DialogHeader, DialogOverlay, DialogTitle, DialogTrigger
 } from "./ui/dialog"
 import {Button} from '@/components/ui/button.tsx';
 import {useForm} from 'react-hook-form';
 import {Input} from "./ui/input";
 import {Label} from "./ui/label";
-import {actions} from 'astro:actions';
+
+import { actions } from 'astro:actions';
 
 type FormData = {
     email: string;

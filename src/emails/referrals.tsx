@@ -18,7 +18,7 @@ const testimonials = [
     },
     {
         name: "Paul Delange",
-        title: "Fouder at Calabi",
+        title: "Founder at Calabi",
         phoneNumber: "+0987654321",
         website: "https://calabi.be",
         email: "paul@calabi.be",
@@ -74,8 +74,7 @@ export default function ReferralsEmail() {
                     {/* Logo Section */}
                     <Section className="mt-4 flex justify-center">
                         <Img
-                            src={WEBSITE_URL + "mvpeters-logo.png"}
-                            width="150"
+                            src={WEBSITE_URL + "mvpeters-big-logo.png"}
                             height="50"
                             alt="Logo"
                             className="inline-block"

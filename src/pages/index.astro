@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import '@/styles/globals.css';
 import '@/styles/fonts.css';
-import {ModeToggle} from '../components/ui/mode-toggle';
+import {ModeToggle} from '../components/mode-toggle';
 import Logo from '../components/Logo.astro';
+import {ReferralModal} from '../components/referral-modal';
 ---
 
 <script is:inline>
@@ -93,8 +94,11 @@ import Logo from '../components/Logo.astro';
 
         <p class="text-2xl md:text-3xl leading-normal max-w-4xl">
           Contact me at <a href="mailto:simon@mvpeters.be">simon@mvpeters.be</a>.
-          Not sure yet? Download my CV <a
-            href="/cv.pdf" download>here</a>.</p>
+          Not sure yet?
+          Click <ReferralModal client:load>here</ReferralModal> to receive some referrals or
+          Download my CV <a
+            href="/cv.pdf" download>here</a>.
+        </p>
       </div>
     </div>
   </main>

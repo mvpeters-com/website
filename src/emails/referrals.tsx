@@ -73,7 +73,13 @@ export default function ReferralsEmail() {
                 <Container className="mx-auto py-5 px-4">
                     {/* Logo Section */}
                     <Section className="mt-4 flex justify-center">
-                        <Logo className="text-flamingo-500" />
+                        <Img
+                            src={WEBSITE_URL + "mvpeters-logo.png"}
+                            width="150"
+                            height="50"
+                            alt="Logo"
+                            className="inline-block"
+                        />
                     </Section>
 
                     {/* Intro Section */}

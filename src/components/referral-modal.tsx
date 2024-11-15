@@ -8,9 +8,9 @@ import {useForm} from 'react-hook-form';
 import {Input} from "./ui/input";
 import {Label} from "./ui/label";
 import {useState} from 'react';
-import { Loader2, Check } from "lucide-react";
+import {Loader2, Check} from "lucide-react";
 
-import { actions } from 'astro:actions';
+import {ActionInputError, actions, isInputError} from 'astro:actions';
 
 type FormData = {
     email: string;
@@ -21,20 +21,40 @@ export const ReferralModal = ({
                               }: {
     children: React.ReactNode
 }) => {
-    const {register, handleSubmit, formState: {errors}, reset} = useForm<FormData>();
+    const {register, handleSubmit, formState: {errors}, reset, setError} = useForm<FormData>();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setErrorMessage] = useState<string | null>(null);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async (formData: FormData) => {
         try {
             setIsLoading(true);
-            setError(null);
-            await actions.sendReferrals(data);
-            setIsSuccess(true);
+            setErrorMessage(null);
+            const {data, error} = await actions.sendReferrals(formData);
+
+            if (data?.success) {
+                setIsSuccess(true);
+                return;
+            }
+
+            if (error && isInputError(error)) {
+                const inputError = error as ActionInputError<FormData>;
+                console.dir(inputError);
+
+                for (const field in inputError.fields) {
+                    setError(field as keyof FormData, {
+                        type: 'server',
+                        message: inputError.fields?.[field as keyof FormData]?.[0] as string
+                    });
+                }
+                
+                return;
+            }
+
+            throw new Error('not successful');
         } catch (error) {
             console.error(error);
-            setError('Failed to send referrals. Please try again.');
+            setErrorMessage('Failed to send referrals. Please try again.');
         } finally {
             setIsLoading(false);
         }
@@ -43,7 +63,7 @@ export const ReferralModal = ({
     const handleOpenChange = (open: boolean) => {
         if (!open) {
             setIsSuccess(false);
-            setError(null);
+            setErrorMessage(null);
             reset();
         }
     };
@@ -54,13 +74,13 @@ export const ReferralModal = ({
                 <a className={'cursor-pointer'}>{children}</a>
             </DialogTrigger>
 
-            <DialogOverlay />
+            <DialogOverlay/>
 
             <DialogContent className="rounded-xl max-w-sm">
                 <div className="relative">
                     {isSuccess && (
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <Check className="w-16 h-16 text-flamingo-400 stroke-[1]" />
+                            <Check className="w-16 h-16 text-flamingo-400 stroke-[1]"/>
                         </div>
                     )}
 
@@ -68,8 +88,10 @@ export const ReferralModal = ({
                         <DialogHeader>
                             <DialogTitle>Send Referrals</DialogTitle>
                             <DialogDescription>
-                                Receive an email featuring testimonials and contact details from some of
-                                my clients. Hear firsthand how I help build solutions that truly matter.
+                                Receive an email featuring testimonials and contact details from
+                                some of
+                                my clients. Hear firsthand how I help build solutions that truly
+                                matter.
                             </DialogDescription>
                         </DialogHeader>
 
@@ -82,21 +104,22 @@ export const ReferralModal = ({
                                     {...register("email", {required: "Email is required"})}
                                 />
                                 {errors.email &&
-                                    <span className="col-span-6 text-red-500">{errors.email.message}</span>}
+                                    <span
+                                        className="col-span-6 text-red-500">{errors.email.message}</span>}
                             </div>
                         </form>
 
-                        <DialogFooter className="mt-4">
-                            <Button 
-                                type="submit" 
-                                form={'referral-form'} 
+                        <DialogFooter className="mt-4  sm:flex-col flex-col gap-2">
+                            <Button
+                                type="submit"
+                                form={'referral-form'}
                                 className="w-full"
                                 variant="default"
                                 disabled={isLoading}
                             >
                                 {isLoading ? (
                                     <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
                                         Sending...
                                     </>
                                 ) : (

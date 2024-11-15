@@ -41,7 +41,7 @@
         --foreground: 0 0% 100%; /* white */
 
         ----primary: 16 100% 55%;
-        --primary-foreground: 0 0% 9%;
+        --primary-foreground: 0 0% 100%;
 
         --card: 0 0% 3.9%;
         --card-foreground: 0 0% 98%;

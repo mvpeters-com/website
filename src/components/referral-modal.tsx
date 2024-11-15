@@ -54,7 +54,7 @@ export const ReferralModal = ({
                 <a className={'cursor-pointer'}>{children}</a>
             </DialogTrigger>
 
-            <DialogOverlay className="custom-backdrop-bg"/>
+            <DialogOverlay />
 
             <DialogContent className="rounded-xl max-w-sm">
                 <div className="relative">

@@ -1,5 +1,4 @@
 import {Heading, Tailwind, Html, Head, Preview, Container, Section, Img, Hr, Text, Link, Row, Column} from "@react-email/components";
-import Logo from './components/Logo';
 import { Fonts } from "./components/Fonts";
 
 const MY_EMAIL =  'simon@mvpeters.com';

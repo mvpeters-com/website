@@ -9,6 +9,7 @@ import {Input} from "./ui/input";
 import {Label} from "./ui/label";
 import {useState} from 'react';
 import {Loader2, Check} from "lucide-react";
+import { track } from '@vercel/analytics';
 
 import {ActionInputError, actions, isInputError} from 'astro:actions';
 
@@ -33,6 +34,10 @@ export const ReferralModal = ({
             const {data, error} = await actions.sendReferrals(formData);
 
             if (data?.success) {
+                track('send_referrals', {
+                    email: formData.email
+                });
+                
                 setIsSuccess(true);
                 return;
             }

@@ -43,8 +43,7 @@ export default function ReferralsEmail() {
                 theme: {
                     extend: {
                         fontFamily: {
-                            articulat: ['articulat-cf', 'Arial', 'sans-serif'],
-                            rajdhani: ['Rajdhani', 'Arial', 'sans-serif'],
+                            verdana: ['Verdana', 'sans-serif'],
                           },
                         colors: {
                             flamingo: {
@@ -69,7 +68,7 @@ export default function ReferralsEmail() {
                 </Head>
                 <Preview>Check out what our customers are saying about us!</Preview>
                 
-                <Container className="mx-auto pt-5 px-4">
+                <Container className="mx-auto pt-5 px-4 font-verdana">
                     {/* Logo Section */}
                     <Section className="mt-4 text-center">
                         <Img
@@ -94,7 +93,7 @@ export default function ReferralsEmail() {
                         <Section key={index}>
                             <Hr className={index === 0 ? "border-gray-200 mb-12" : "border-gray-200 my-12"} />
                             
-                            <Text className="text-gray-800 italic text-xl leading-relaxed mb-6">
+                            <Text className="text-gray-800 italic font-extralight text-lg leading-relaxed mb-6">
                                 "{testimonial.quote}"
                             </Text>
                             
@@ -109,7 +108,7 @@ export default function ReferralsEmail() {
                                     />
                                 </Column>
                                 
-                                <Column width={16}></Column>
+                                <Column width={16} />
                                 
                                 <Column align="left">
                                     <Heading className="text-gray-900 font-semibold text-lg m-0">

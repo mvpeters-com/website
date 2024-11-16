@@ -69,14 +69,14 @@ export default function ReferralsEmail() {
                 </Head>
                 <Preview>Check out what our customers are saying about us!</Preview>
                 
-                <Container className="mx-auto py-5 px-4">
+                <Container className="mx-auto pt-5 px-4">
                     {/* Logo Section */}
-                    <Section className="mt-4 flex justify-center">
+                    <Section className="mt-4 text-center">
                         <Img
                             src={WEBSITE_URL + "mvpeters-big-logo.png"}
                             height="50"
                             alt="Logo"
-                            className="inline-block"
+                            className="inline"
                         />
                     </Section>
 
@@ -85,14 +85,14 @@ export default function ReferralsEmail() {
                         <Text className="text-gray-800 text-lg">
                             Below are some testimonials from people I've worked with. I hope you find them helpful and that they give you a good idea of what it's like to work with me.
                             Feel free to contact them directly if you have any questions.
-                            Interested in working together? <Link href={`mailto:${MY_EMAIL}`}>Let's talk!</Link>
+                            Interested in working together? <Link className="text-flamingo-400" href={`mailto:${MY_EMAIL}`}>Let's talk!</Link>
                           </Text>
                     </Section>
 
                     {/* Testimonials Section */}
                     {testimonials.map((testimonial, index) => (
                         <Section key={index}>
-                            <Hr className="border-gray-200 my-12" />
+                            <Hr className={index === 0 ? "border-gray-200 mb-12" : "border-gray-200 my-12"} />
                             
                             <Text className="text-gray-800 italic text-xl leading-relaxed mb-6">
                                 "{testimonial.quote}"
@@ -124,7 +124,7 @@ export default function ReferralsEmail() {
                                         <Text className="m-0">
                                             <Link
                                                 href={`mailto:${testimonial.email}`}
-                                                className="text-flamingo-500"
+                                                className="text-flamingo-400"
                                             >
                                                 {testimonial.email}
                                             </Link>
@@ -135,7 +135,7 @@ export default function ReferralsEmail() {
                                         <Text className="m-0">
                                             <Link
                                                 href={`tel:${testimonial.phoneNumber}`}
-                                                className="text-flamingo-500"
+                                                className="text-flamingo-400"
                                             >
                                                 {testimonial.phoneNumber}
                                             </Link>
@@ -149,7 +149,7 @@ export default function ReferralsEmail() {
                     {/* Footer Section */}
                     <Section className="mt-8 text-center">
                         <Text className="text-gray-600 text-sm">
-                            I hope you find these testimonials helpful and that they give you a good idea of what it's like to work with me. Interested in working together? <Link href="mailto:simon@mvpeters.com">Let's talk!</Link>
+                            I hope you find these testimonials helpful and that they give you a good idea of what it's like to work with me. Interested in working together? <Link className="text-flamingo-400" href="mailto:simon@mvpeters.com">Let's talk!</Link>
                         </Text>
                     </Section>
                 </Container>

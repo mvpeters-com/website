@@ -91,3 +91,17 @@
         min-height: 100vh;
     }
 }
+
+mux-player {
+  --media-background-color: #ff4f1a;
+  --play-button: none;
+  --live-button: none;
+  --cast-button: none;
+  --seek-backward-button: none;
+  --seek-forward-button: none;
+  --bottom-play-button: none;
+  --pip-button: none;
+  --fullscreen-button: none;
+  --playback-rate-button: none;
+  --rendition-menu-button: none;
+}

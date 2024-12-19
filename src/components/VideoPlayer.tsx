@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import MuxPlayer from "@mux/mux-player-react";
 import { Button } from './ui/button';
 import { X } from 'lucide-react';
@@ -23,6 +23,7 @@ export const VideoPlayer = ({
   const [isPortrait, setIsPortrait] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
   const playerRef = React.useRef<HTMLDivElement>(null);
+  const playerInitTime = useRef(Date.now());
   const muxPlayerRef = React.useRef<any>(null);
 
   // Function to check orientation
@@ -130,6 +131,7 @@ export const VideoPlayer = ({
       >
           <MuxPlayer
             ref={muxPlayerRef}
+            playerInitTime={undefined}
             playbackId={isPortrait ? mobilePlaybackId : desktopPlaybackId}
             metadata={metadata}
             autoPlay={false}

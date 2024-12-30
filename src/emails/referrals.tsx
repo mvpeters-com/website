@@ -31,6 +31,14 @@ const testimonials = [
         quote: "I have had the pleasure of working closely with Simon on various projects.Simon commits fully to a project and thinks far beyond mere development.Simon ensures that the right technological and strategic choices are made to make a project succeed within a given scope, timing and budget. Realistic and hands-on without losing sight of the big picture.A passion for technology, a heart for UX and design, and a very broad range of knowledge.Simon is solid, fast and extremely flexible. Very pleasant to brainstorm with as a designer.",
         avatar: WEBSITE_URL + "referrals/dieter.jpeg",
     },
+    {
+        name: "Emma Bracke",
+        title: "Deputy Director at Awel",
+        website: "https://awel.be",
+        email: "emma@awel.be",
+        quote: "The collaboration with Spaced felt incredibly smooth right from the start. Simon excels at explaining the technical aspects in an accessible and digestible way. He consistently thinks along with the needs and possibilities of our organization and delivers a well-crafted final result with care.",
+        avatar: WEBSITE_URL + "referrals/emma.jpeg",
+    }
 ];
 
 
@@ -124,17 +132,6 @@ export default function ReferralsEmail() {
                                                 className="text-flamingo-400"
                                             >
                                                 {testimonial.email}
-                                            </Link>
-                                        </Text>
-                                    )}
-                                    
-                                    {testimonial.phoneNumber && (
-                                        <Text className="m-0">
-                                            <Link
-                                                href={`tel:${testimonial.phoneNumber}`}
-                                                className="text-flamingo-400"
-                                            >
-                                                {testimonial.phoneNumber}
                                             </Link>
                                         </Text>
                                     )}

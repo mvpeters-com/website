@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import MuxPlayer from "@mux/mux-player-react";
 import { Button } from './ui/button';
 import { X } from 'lucide-react';
@@ -22,9 +22,16 @@ export const VideoPlayer = ({
   const [isOpen, setIsOpen] = React.useState(false);
   const [isPortrait, setIsPortrait] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
+  const [supportsHover, setSupportsHover] = React.useState(false);
   const playerRef = React.useRef<HTMLDivElement>(null);
-  const playerInitTime = useRef(Date.now());
   const muxPlayerRef = React.useRef<any>(null);
+  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+
+  // Check if device supports hover on mount
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover)');
+    setSupportsHover(mediaQuery.matches);
+  }, []);
 
   // Function to check orientation
   const checkOrientation = () => {
@@ -56,8 +63,8 @@ export const VideoPlayer = ({
   // Handle video play
   const handlePlay = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    setIsOpen(true);
 
+    setIsOpen(true);
     if (playerRef.current) {
       try {
         await playerRef.current.requestFullscreen();
@@ -96,23 +103,41 @@ export const VideoPlayer = ({
     }
   }, [isOpen]);
 
-  const gifUrl = `https://image.mux.com/${desktopPlaybackId}/animated.gif?start=0&end=4&width=640&fps=30`;
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!supportsHover) return;
+    
+    // Get the position relative to the viewport
+    setMousePosition({
+      x: e.clientX,
+      y: e.clientY
+    });
+  };
+
+  const gifUrl = `https://image.mux.com/${desktopPlaybackId}/animated.gif?start=11&end=16&width=640&fps=30`;
 
   return (
     <>
       <span className="relative inline-block">
         <a
-          href="#"
-          className="text-4xl underline text-flamingo-400 hover:text-flamingo-500 transition-colors"
+         role="button"
+          className="underline text-flamingo-400 hover:text-flamingo-500 transition-colors"
           onClick={handlePlay}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={() => supportsHover && setIsHovered(true)}
+          onMouseLeave={() => supportsHover && setIsHovered(false)}
+          onMouseMove={handleMouseMove}
         >
           {buttonText}
         </a>,
         
-        {isHovered && (
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 z-50">
+        {isHovered && supportsHover && (
+          <div 
+            className="fixed z-50 pointer-events-none"
+            style={{
+              left: `${mousePosition.x}px`,
+              top: `${mousePosition.y - 220}px`, // Offset above the cursor
+              transform: 'translateX(-50%)'
+            }}
+          >
             <div className="relative">
               <img 
                 src={gifUrl} 
@@ -129,9 +154,28 @@ export const VideoPlayer = ({
         ref={playerRef}
         className={`fixed inset-0 z-50 bg-flamingo-400 ${isOpen ? 'block' : 'hidden'}`}
       >
+          <button
+            onClick={handleClose}
+            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/20 hover:bg-black/40 transition-colors"
+            aria-label="Close video"
+          >
+            <svg 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="white" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
           <MuxPlayer
             ref={muxPlayerRef}
-            playerInitTime={undefined}
             playbackId={isPortrait ? mobilePlaybackId : desktopPlaybackId}
             metadata={metadata}
             autoPlay={false}

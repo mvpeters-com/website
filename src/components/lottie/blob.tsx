@@ -45,7 +45,7 @@ export function AnimatedBlob() {
 
   return (
     <div 
-      className="w-8"
+      className="w-[40px]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

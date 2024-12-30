@@ -6,7 +6,6 @@ import { ModeToggle } from "../components/mode-toggle";
 import Logo from "../components/Logo.astro";
 import { ReferralModal } from "../components/referral-modal";
 import { VideoPlayer } from "@/components/VideoPlayer";
-import { AnimatedBlob } from "@/components/lottie/blob";
 ---
 
 <script is:inline>
@@ -46,7 +45,6 @@ import { AnimatedBlob } from "@/components/lottie/blob";
       <div class="flex flex-col gap-4">
         <h1 class="text-5xl md:text-7xl leading-none font-bold max-w-5xl">
           Hi, I’m Simon.<br />
-          I build digital MVP’s that drive inclusion and impact.
         </h1>
 
         <p class="text-3xl md:text-4xl md:leading-normal align-top">
@@ -58,8 +56,8 @@ import { AnimatedBlob } from "@/components/lottie/blob";
           ai sceptic,<br />
           human technologist,<br />
           <VideoPlayer
-            desktopPlaybackId="lxGu4VrM3KE4xtoB02LMvl01KxV5zfrZnfcFYZoZTvWHI"
-            mobilePlaybackId="yARS3M1SZ8UThj52Acoa8Bv1s7B8QzIokADRAfdpblQ"
+            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
+            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
             client:load
             buttonText="pragmatic digital builder"
           /><br />
@@ -67,8 +65,8 @@ import { AnimatedBlob } from "@/components/lottie/blob";
         </p>
       </div>
 
-      <AnimatedBlob client:load />
-      
+      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
+
       <div class="flex flex-col gap-4">
         <h1 class="text-5xl md:text-7xl leading-none font-bold max-w-3xl">
           Why build a spacecraft, when a nice kite will do.
@@ -94,7 +92,7 @@ import { AnimatedBlob } from "@/components/lottie/blob";
 
       <p class="text-2xl md:text-3xl leading-normal">
         Private sector: We Want More, June, Calabi, ... <br />
-        Public sector: AMIF, mediawijs, awel, ...
+        Public sector: AMIF, Mediawijs, Awel, ...
       </p>
 
       <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
@@ -104,7 +102,7 @@ import { AnimatedBlob } from "@/components/lottie/blob";
           Interested?
         </h1>
 
-        <p class="text-2xl md:text-3xl md:leading-normal max-w-4xl">
+        <p class="text-2xl md:text-3xl md:leading-normal max-w-3xl">
           Contact me at <a href="mailto:simon@mvpeters.be">simon@mvpeters.be</a
           >. Want to know more?
           <ReferralModal client:load>Get recommendations</ReferralModal> or download

@@ -39,12 +39,6 @@ export const ReferralModal = ({ children }: { children: React.ReactNode }) => {
   const onSubmit = async (formData: FormData) => {
     setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return;
-
     try {
       setIsLoading(true);
       setErrorMessage(null);
@@ -100,14 +94,16 @@ export const ReferralModal = ({ children }: { children: React.ReactNode }) => {
   return (
     <Dialog onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button variant="outline-flamingo" className="text-2xl py-4">
+        <a
+          role="button"
+          className="underline text-flamingo-400 hover:text-flamingo-500 transition-colors">
           {children}
-        </Button>
+        </a>
       </DialogTrigger>
 
       <DialogOverlay />
 
-      <DialogContent className="rounded-xl max-w-sm">
+      <DialogContent className="lg:rounded-xl max-w-sm">
         <div className="relative">
           {isSuccess && (
             <div className="absolute inset-0 flex items-center justify-center">

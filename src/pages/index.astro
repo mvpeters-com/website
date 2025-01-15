@@ -6,6 +6,7 @@ import { ModeToggle } from "../components/mode-toggle";
 import Logo from "../components/Logo.astro";
 import { ReferralModal } from "../components/referral-modal";
 import { VideoPlayer } from "@/components/VideoPlayer";
+import { PlayAILink } from "@/components/play-ai";
 ---
 
 <script is:inline>
@@ -43,16 +44,16 @@ import { VideoPlayer } from "@/components/VideoPlayer";
 
     <div class="flex flex-col gap-9">
       <div class="flex flex-col gap-4">
-        <h1 class="text-5xl md:text-7xl leading-none font-bold max-w-5xl">
+        <h1 class="text-5xl md:text-[120px] leading-none font-bold max-w-5xl">
           Hi, I’m Simon.<br />
         </h1>
 
-        <p class="text-3xl md:text-4xl md:leading-normal align-top">
+        <p class="text-3xl md:text-6xl md:leading-normal align-top">
           I’m a full stack developer, <br />
           interim CTO, <br />
           Inclusive developer,<br />
           code philosopher,<br />
-          ai believer,<br />
+          <PlayAILink  client:load text="ai believer" />,<br />
           ai sceptic,<br />
           human technologist,<br />
           <VideoPlayer

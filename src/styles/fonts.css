@@ -24,32 +24,32 @@
 
 @import url("https://p.typekit.net/p.css?s=1&k=twu5syb&ht=tk&f=49645.49646.49647.49648.49649.49650.49651.49652.49653.49654.51655&a=46182136&app=typekit&e=css");
 
-@font-face {
+/* @font-face {
     font-family: "articulat-cf";
     src: url("https://use.typekit.net/af/ecad43/000000000000000077524f4b/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("woff2"), url("https://use.typekit.net/af/ecad43/000000000000000077524f4b/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("woff"), url("https://use.typekit.net/af/ecad43/000000000000000077524f4b/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("opentype");
     font-display: auto;
     font-style: normal;
     font-weight: 100;
     font-stretch: normal;
-}
+} */
 
-@font-face {
+/* @font-face {
     font-family: "articulat-cf";
     src: url("https://use.typekit.net/af/97c8e6/000000000000000077524f4f/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n2&v=3") format("woff2"), url("https://use.typekit.net/af/97c8e6/000000000000000077524f4f/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n2&v=3") format("woff"), url("https://use.typekit.net/af/97c8e6/000000000000000077524f4f/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n2&v=3") format("opentype");
     font-display: auto;
     font-style: normal;
     font-weight: 200;
     font-stretch: normal;
-}
+} */
 
-@font-face {
+/* @font-face {
     font-family: "articulat-cf";
     src: url("https://use.typekit.net/af/296adc/000000000000000077524f44/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"), url("https://use.typekit.net/af/296adc/000000000000000077524f44/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"), url("https://use.typekit.net/af/296adc/000000000000000077524f44/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
     font-display: auto;
     font-style: normal;
     font-weight: 300;
     font-stretch: normal;
-}
+} */
 
 @font-face {
     font-family: "articulat-cf";
@@ -60,7 +60,7 @@
     font-stretch: normal;
 }
 
-@font-face {
+/* @font-face {
     font-family: "articulat-cf";
     src: url("https://use.typekit.net/af/47b487/000000000000000077524f50/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"), url("https://use.typekit.net/af/47b487/000000000000000077524f50/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"), url("https://use.typekit.net/af/47b487/000000000000000077524f50/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
     font-display: auto;
@@ -69,14 +69,14 @@
     font-stretch: normal;
 }
 
-@font-face {
+/* @font-face {
     font-family: "articulat-cf";
     src: url("https://use.typekit.net/af/47eba5/000000000000000077524f4e/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"), url("https://use.typekit.net/af/47eba5/000000000000000077524f4e/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"), url("https://use.typekit.net/af/47eba5/000000000000000077524f4e/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
     font-display: auto;
     font-style: normal;
     font-weight: 600;
     font-stretch: normal;
-}
+} */
 
 @font-face {
     font-family: "articulat-cf";
@@ -87,44 +87,44 @@
     font-stretch: normal;
 }
 
-@font-face {
+/* @font-face {
     font-family: "articulat-cf";
     src: url("https://use.typekit.net/af/2f6bd5/000000000000000077524f40/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("woff2"), url("https://use.typekit.net/af/2f6bd5/000000000000000077524f40/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("woff"), url("https://use.typekit.net/af/2f6bd5/000000000000000077524f40/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("opentype");
     font-display: auto;
     font-style: normal;
     font-weight: 800;
     font-stretch: normal;
-}
+} */
 
-@font-face {
+/* @font-face {
     font-family: "articulat-cf";
     src: url("https://use.typekit.net/af/873575/000000000000000077524f42/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("woff2"), url("https://use.typekit.net/af/873575/000000000000000077524f42/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("woff"), url("https://use.typekit.net/af/873575/000000000000000077524f42/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("opentype");
     font-display: auto;
     font-style: normal;
     font-weight: 900;
     font-stretch: normal;
-}
+} */
 
-@font-face {
+/* @font-face {
     font-family: "articulat-heavy-cf";
     src: url("https://use.typekit.net/af/631797/000000000000000077524f4a/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("woff2"), url("https://use.typekit.net/af/631797/000000000000000077524f4a/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("woff"), url("https://use.typekit.net/af/631797/000000000000000077524f4a/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("opentype");
     font-display: auto;
     font-style: normal;
     font-weight: 900;
     font-stretch: normal;
-}
+} */
 
-@font-face {
+/* @font-face {
     font-family: "articulat-heavy-cf";
     src: url("https://use.typekit.net/af/add895/000000000000000077524f41/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3") format("woff2"), url("https://use.typekit.net/af/add895/000000000000000077524f41/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3") format("woff"), url("https://use.typekit.net/af/add895/000000000000000077524f41/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3") format("opentype");
     font-display: auto;
     font-style: italic;
     font-weight: 900;
     font-stretch: normal;
-}
+} */
 
 /* devanagari */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 300;
@@ -134,7 +134,7 @@
 }
 
 /* latin-ext */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 300;
@@ -144,7 +144,7 @@
 }
 
 /* latin */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 300;
@@ -184,7 +184,7 @@
 }
 
 /* devanagari */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 500;
@@ -194,7 +194,7 @@
 }
 
 /* latin-ext */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 500;
@@ -204,7 +204,7 @@
 }
 
 /* latin */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 500;
@@ -214,7 +214,7 @@
 }
 
 /* devanagari */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 600;
@@ -224,7 +224,7 @@
 }
 
 /* latin-ext */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 600;
@@ -234,14 +234,14 @@
 }
 
 /* latin */
-@font-face {
+/* @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 600;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/rajdhani/v15/LDI2apCSOBg7S-QT7pbYF_OreefkkbIx.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+} */
 
 /* devanagari */
 @font-face {
@@ -254,7 +254,7 @@
 }
 
 /* latin-ext */
-@font-face {
+ @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 700;
@@ -264,7 +264,7 @@
 }
 
 /* latin */
-@font-face {
+ @font-face {
     font-family: 'Rajdhani';
     font-style: normal;
     font-weight: 700;

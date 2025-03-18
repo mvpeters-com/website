@@ -1,103 +1,114 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import '@/styles/globals.css';
-import '@/styles/fonts.css';
-import {ModeToggle} from '../components/mode-toggle';
-import Logo from '../components/Logo.astro';
-import {ReferralModal} from '../components/referral-modal';
+import Layout from "../layouts/Layout.astro";
+import "@/styles/globals.css";
+import "@/styles/fonts.css";
+import { ModeToggle } from "../components/mode-toggle";
+import Logo from "../components/Logo.astro";
+import { ReferralModal } from "../components/referral-modal";
+import { VideoPlayer } from "@/components/VideoPlayer";
+import { PlayAILink } from "@/components/play-ai";
 ---
 
 <script is:inline>
-    const getThemePreference = () => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
-        }
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-
-    const isDark = getThemePreference() === 'dark';
-    document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
-
-    if (typeof localStorage !== 'undefined') {
-        const observer = new MutationObserver(() => {
-            const isDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-        observer.observe(document.documentElement, {attributes: true, attributeFilter: ['class']});
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
     }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
 </script>
 
 <Layout>
   <main class="p-4 md:p-12 flex flex-col gap-12 md:gap-[96px]">
     <div class="flex justify-between align-middle">
-      <Logo/>
+      <Logo />
 
-      <ModeToggle client:load/>
+      <ModeToggle client:load />
     </div>
 
     <div class="flex flex-col gap-9">
       <div class="flex flex-col gap-4">
-        <h1 class="text-5xl md:text-7xl leading-none font-bold">
-          I’m Simon. <br/>
-          I like building digital things.
+        <h1 class="text-5xl md:text-[120px] leading-none font-bold max-w-5xl">
+          Hi, I’m Simon.<br />
         </h1>
 
-        <p class="text-3xl md:text-4xl leading-normal">
-          I’m a full stack developer, <br/>
-          interim CTO, <br/>
-          no bs gear shifter,<br/>
-          inclusive developer,<br/>
-          code philosopher,<br/>
-          ai believer,<br/>
-          ai sceptic,<br/>
-          human technologist,<br/>
-          pragmatic digital builder,<br/>
+        <p class="text-3xl md:text-6xl md:leading-normal align-top">
+          I’m a full stack developer, <br />
+          interim CTO, <br />
+          Inclusive developer,<br />
+          code philosopher,<br />
+          ai believer,<br />
+          ai sceptic,<br />
+          human technologist,<br />
+          <VideoPlayer
+            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
+            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
+            client:load
+            buttonText="pragmatic digital builder"
+          /><br />
           proud nerd.
         </p>
       </div>
 
-      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"/>
+      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
 
       <div class="flex flex-col gap-4">
         <h1 class="text-5xl md:text-7xl leading-none font-bold max-w-3xl">
-          Why build a spacecraft,
-          when a nice kite will do.
+          Why build a spacecraft, when a nice kite will do.
         </h1>
 
         <p class="text-3xl md:text-4xl max-w-xl leading-normal">
-          I like to look at the big picture and come up with a realistic plan to get us there.
+          I like to look at the big picture and come up with a realistic plan to
+          get us there.
         </p>
       </div>
 
-      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"/>
+      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
 
       <p class="text-2xl md:text-3xl leading-normal">
-        Frontend: React, React Native (expo), Angular, Ionic, Astro, Typescript <br/>
-        Backend: Node.js (NestJS, RSC), PHP (Laravel), Python (Flask) <br/>
-        Databases: MySQL, PostgreSQL, Firebase<br/>
+        Frontend: React, React Native (expo), Angular, Ionic, Astro, Typescript <br
+        />
+        Backend: Node.js (NestJS, RSC), PHP (Laravel), Python (Flask) <br />
+        Databases: MySQL, PostgreSQL, Firebase<br />
         Design: Figma
       </p>
 
-      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"/>
+      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
 
       <p class="text-2xl md:text-3xl leading-normal">
-        Private sector: We Want More, June, Calabi, ... <br/>
-        Public sector: AMIF, mediawijs, awel, ...
+        Private sector: We Want More, June, Calabi, ... <br />
+        Public sector: AMIF, Mediawijs, Awel, ...
       </p>
 
-      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"/>
+      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
 
       <div class="flex flex-col gap-4">
         <h1 class="text-5xl md:text-7xl leading-none font-bold max-w-3xl">
           Interested?
         </h1>
 
-        <p class="text-2xl md:text-3xl leading-normal max-w-4xl">
-          Contact me at <a href="mailto:simon@mvpeters.be">simon@mvpeters.be</a>.
-          Not sure yet?
-          Click <ReferralModal client:load>here</ReferralModal> to receive some referrals or
-          download my <a
-            href="/CV.pdf" download>CV</a>.
+        <p class="text-2xl md:text-3xl md:leading-normal max-w-3xl">
+          Contact me at <a href="mailto:simon@mvpeters.com"
+            >simon@mvpeters.com</a
+          >. Want to know more?
+          <ReferralModal client:load>Get recommendations</ReferralModal> or download
+          my <a href="/CV.pdf" download>CV</a>.
         </p>
       </div>
     </div>

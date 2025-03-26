@@ -6,7 +6,6 @@ import { ModeToggle } from "../components/mode-toggle";
 import Logo from "../components/Logo.astro";
 import { ReferralModal } from "../components/referral-modal";
 import { VideoPlayer } from "@/components/VideoPlayer";
-import { PlayAILink } from "@/components/play-ai";
 ---
 
 <script is:inline>
@@ -48,22 +47,27 @@ import { PlayAILink } from "@/components/play-ai";
           Hi, I’m Simon.<br />
         </h1>
 
-        <p class="text-3xl md:text-6xl md:leading-normal align-top">
-          I’m a full stack developer, <br />
-          interim CTO, <br />
-          Inclusive developer,<br />
-          code philosopher,<br />
-          ai believer,<br />
-          ai sceptic,<br />
-          human technologist,<br />
-          <VideoPlayer
-            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
-            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
-            client:load
-            buttonText="pragmatic digital builder"
-          /><br />
-          proud nerd.
-        </p>
+        <div>
+          <p class="text-3xl md:text-6xl md:leading-normal align-top">
+            I’m a full stack developer, <br />
+            interim CTO, <br />
+            Inclusive developer,<br />
+            code philosopher,<br />
+            ai believer,<br />
+            ai sceptic,<br />
+            human technologist,<br />
+            <VideoPlayer
+              desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
+              mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
+              client:load
+              buttonText="pragmatic digital builder"
+            />
+            <br />
+          </p>
+          <p class="text-3xl md:text-6xl md:leading-normal align-top">
+            proud nerd.
+          </p>
+        </div>
       </div>
 
       <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>

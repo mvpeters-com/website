@@ -5,7 +5,12 @@ import "@/styles/fonts.css";
 import { ModeToggle } from "../components/mode-toggle";
 import Logo from "../components/Logo.astro";
 import { ReferralModal } from "../components/referral-modal";
-import { VideoPlayer } from "@/components/VideoPlayer";
+import { ReferencesCarousel } from "../components/ReferencesCarousel";
+import {
+  HoverPreview,
+  VideoPlayer,
+  VideoPlayerButton,
+} from "@/components/VideoPlayer";
 ---
 
 <script is:inline>
@@ -35,6 +40,9 @@ import { VideoPlayer } from "@/components/VideoPlayer";
 
 <Layout>
   <main class="p-4 md:p-12 flex flex-col gap-12 md:gap-[96px]">
+    <VideoPlayer client:load />
+    <HoverPreview client:load />
+
     <div class="flex justify-between align-middle">
       <Logo />
 
@@ -43,31 +51,29 @@ import { VideoPlayer } from "@/components/VideoPlayer";
 
     <div class="flex flex-col gap-9">
       <div class="flex flex-col gap-4">
-        <h1 class="text-5xl md:text-[120px] leading-none font-bold max-w-5xl">
-          Hi, I’m Simon.<br />
+        <h1 class="text-5xl md:text-[120px] leading-none font-bold max-w-4xl">
+          Hi, I'm Simon.<br />
         </h1>
 
-        <div>
-          <p class="text-3xl md:text-6xl md:leading-normal align-top">
-            I’m a full stack developer, <br />
-            interim CTO, <br />
-            Inclusive developer,<br />
-            code philosopher,<br />
-            ai believer,<br />
-            ai sceptic,<br />
-            human technologist,<br />
-            <VideoPlayer
-              desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
-              mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
-              client:load
-              buttonText="pragmatic digital builder"
-            />
-            <br />
-          </p>
-          <p class="text-3xl md:text-6xl md:leading-normal align-top">
-            proud nerd.
-          </p>
-        </div>
+        <p class="text-3xl md:text-5xl md:leading-normal align-top max-w-4xl">
+          I'm a full stack developer, <VideoPlayerButton
+            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
+            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
+            client:load
+            buttonText="interim CTO"
+          />, <VideoPlayerButton
+            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
+            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
+            client:load
+            buttonText="inclusive developer"
+          />, ai believer, ai sceptic, human technologist,
+          <VideoPlayerButton
+            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
+            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
+            client:load
+            buttonText="pragmatic digital builder"
+          /> and proud nerd.
+        </p>
       </div>
 
       <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
@@ -102,6 +108,10 @@ import { VideoPlayer } from "@/components/VideoPlayer";
 
       <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
 
+      <ReferencesCarousel client:load />
+
+      <div class="w-4 h-4 md:w-6 md:h-6 bg-flamingo-400 rounded-full"></div>
+
       <div class="flex flex-col gap-4">
         <h1 class="text-5xl md:text-7xl leading-none font-bold max-w-3xl">
           Interested?
@@ -110,9 +120,7 @@ import { VideoPlayer } from "@/components/VideoPlayer";
         <p class="text-2xl md:text-3xl md:leading-normal max-w-3xl">
           Contact me at <a href="mailto:simon@mvpeters.com"
             >simon@mvpeters.com</a
-          >. Want to know more?
-          <ReferralModal client:load>Get recommendations</ReferralModal> or download
-          my <a href="/CV.pdf" download>CV</a>.
+          > or download my <a href="/CV.pdf" download>CV</a>.
         </p>
       </div>
     </div>

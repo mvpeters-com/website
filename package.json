@@ -6,7 +6,7 @@
     "mail-build": "email build --dir=src/emails",
     "mail-dev": "email dev --dir=src/emails",
     "dev": "astro dev",
-    "build": "astro check && astro build && npm run mail-build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

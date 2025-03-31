@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     website: "https://wewantmore.studio",
     email: "luc@wewantmore.studio",
     quote:
-      "We were looking for a developer with the necessary technical skills, the right mindset and an interest in sustainability to help us develop the Monark app. Luckily Simon was interested in our project and went the extra mile which made a huge difference!",
+      "We were looking for a developer with the necessary technical skills, the right mindset, and a genuine interest in sustainability to help us develop the Monark app. Luckily, Simon was interested in our project—and he went the extra mile, which truly made a huge difference!",
     avatar: "/referrals/luc.jpeg",
   },
   {
@@ -59,7 +59,12 @@ const testimonials: Testimonial[] = [
 
 export const ReferencesCarousel = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    breakpoints: {
+      "(min-width: 768px)": { watchDrag: false },
+    },
+  });
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -92,12 +97,12 @@ export const ReferencesCarousel = () => {
 
   return (
     <div className="w-full relative max-w-4xl">
-      <div className="text-3xl md:text-4xl font-bold mb-8">What people say</div>
+      <div className="text-3xl md:text-4xl font-bold mb-2">What people say</div>
 
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
+      <div className="overflow-hidden -mx-4" ref={emblaRef}>
+        <div className="flex mx-4">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="flex-[0_0_100%] min-w-0">
+            <div key={index} className="flex-[0_0_100%] min-w-0 m-4">
               <blockquote className="text-xl md:text-2xl italic font-light mb-6">
                 "{testimonial.quote}"
               </blockquote>

@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 
 // Define testimonial data structure
 interface Testimonial {
@@ -25,7 +26,7 @@ const testimonials: Testimonial[] = [
     avatar: "/referrals/luc.jpeg",
   },
   {
-    name: "Paul Delange",
+    name: "Paul De Lange",
     title: "Founder",
     company: "Calabi",
     website: "https://calabi.be",
@@ -41,7 +42,7 @@ const testimonials: Testimonial[] = [
     website: "https://omvorm.studio",
     email: "dieter@omvorm.studio",
     quote:
-      "I have had the pleasure of working closely with Simon on various projects. Simon commits fully to a project and thinks far beyond mere development. Simon ensures that the right technological and strategic choices are made to make a project succeed within a given scope, timing and budget. Realistic and hands-on without losing sight of the big picture. A passion for technology, a heart for UX and design, and a very broad range of knowledge. Simon is solid, fast and extremely flexible. Very pleasant to brainstorm with as a designer.",
+      "I’ve had the pleasure of working closely with Simon on several projects. He’s fully committed, thinks beyond development, and ensures the right tech and strategic choices are made to deliver within scope, time, and budget. Realistic, hands-on, yet always mindful of the big picture. Passionate about tech, strong in UX and design, and incredibly knowledgeable. Solid, fast, flexible—and great to brainstorm with as a designer.",
     avatar: "/referrals/dieter.jpeg",
   },
   {
@@ -56,203 +57,47 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const animationDuration = 200;
-
-// Define animation styles as objects that can be applied inline
-const slideAnimations = {
-  slideInRight: {
-    animation: `slideInRight ${animationDuration}ms forwards`,
-  },
-  slideInLeft: {
-    animation: `slideInLeft ${animationDuration}ms forwards`,
-  },
-  slideOutRight: {
-    animation: `slideOutRight ${animationDuration}ms forwards`,
-  },
-  slideOutLeft: {
-    animation: `slideOutLeft ${animationDuration}ms forwards`,
-  },
-  // Add the keyframes as a string that can be inserted in the head
-  keyframes: `
-    @keyframes slideInRight {
-      0% { transform: translateX(100%); opacity: 0; }
-      100% { transform: translateX(0); opacity: 1; }
-    }
-    
-    @keyframes slideInLeft {
-      0% { transform: translateX(-100%); opacity: 0; }
-      100% { transform: translateX(0); opacity: 1; }
-    }
-    
-    @keyframes slideOutRight {
-      0% { transform: translateX(0); opacity: 1; }
-      100% { transform: translateX(100%); opacity: 0; }
-    }
-    
-    @keyframes slideOutLeft {
-      0% { transform: translateX(0); opacity: 1; }
-      100% { transform: translateX(-100%); opacity: 0; }
-    }
-  `,
-};
-
 export const ReferencesCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [direction, setDirection] = useState<"left" | "right" | null>(null);
-  const [containerHeight, setContainerHeight] = useState<number | null>(null);
-  const [previousIndex, setPreviousIndex] = useState<number | null>(null);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
-  // Create refs for each testimonial content
-  const testimonialRefs = useRef<(HTMLDivElement | null)[]>(
-    Array(testimonials.length).fill(null)
-  );
-  const contentWrapperRef = useRef<HTMLDivElement>(null);
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-  // Add animation styles to document head when component mounts
-  useEffect(() => {
-    const styleElement = document.createElement("style");
-    styleElement.textContent = slideAnimations.keyframes;
-    document.head.appendChild(styleElement);
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
     return () => {
-      document.head.removeChild(styleElement);
+      emblaApi.off("select", onSelect);
     };
-  }, []);
+  }, [emblaApi, onSelect]);
 
-  const updateHeight = useCallback(() => {
-    const currentRef = testimonialRefs.current[currentIndex];
-    if (currentRef) {
-      setContainerHeight(currentRef.scrollHeight);
-    }
-  }, [currentIndex]);
-
-  // We don't need to initialize the array again since we did it in the initial ref creation
-  // Instead, we'll add a useEffect for after mount to ensure we render all testimonials once
-  useEffect(() => {
-    // Set a flag to render all testimonials once for measurement
-    setIsInitialized(true);
-  }, []);
-
-  // After initial mount, force an update of the height
-  useEffect(() => {
-    if (isInitialized) {
-      updateHeight();
-    }
-  }, [isInitialized, updateHeight]);
-
-  // Update height when current index changes or after animation completes
-  useEffect(() => {
-    // Set initial height
-    updateHeight();
-
-    // Also update after a small delay to ensure content has rendered
-    const timer = setTimeout(updateHeight, 50);
-    return () => clearTimeout(timer);
-  }, [currentIndex, isAnimating, updateHeight]);
-
-  const goToPrevious = () => {
-    if (isAnimating) return;
-    setDirection("left");
-    setIsAnimating(true);
-    setPreviousIndex(currentIndex);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToNext = () => {
-    if (isAnimating) return;
-    setDirection("right");
-    setIsAnimating(true);
-    setPreviousIndex(currentIndex);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  useEffect(() => {
-    if (isAnimating) {
-      const timer = setTimeout(() => {
-        setIsAnimating(false);
-        setPreviousIndex(null);
-      }, animationDuration);
-      return () => clearTimeout(timer);
-    }
-  }, [isAnimating]);
-
-  const handleDotClick = (index: number) => {
-    if (isAnimating || index === currentIndex) return;
-
-    setDirection(index > currentIndex ? "right" : "left");
-    setIsAnimating(true);
-    setPreviousIndex(currentIndex);
-    setCurrentIndex(index);
-  };
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
 
   return (
     <div className="w-full relative max-w-4xl">
       <div className="text-3xl md:text-4xl font-bold mb-8">What people say</div>
 
-      <div
-        className="relative overflow-hidden"
-        style={{
-          height: containerHeight ? `${containerHeight}px` : "auto",
-          transition: "height 200ms ease-in-out",
-        }}
-        ref={contentWrapperRef}
-      >
-        {testimonials.map((testimonial, index) => {
-          const isActive = index === currentIndex;
-          const isAnimatingOut = previousIndex === index && isAnimating;
-          const shouldRender = isActive || isAnimatingOut || !isInitialized;
-
-          if (!shouldRender) return null;
-
-          // Determine animation style based on slide state and direction
-          let animationStyle = {};
-
-          if (isAnimating && isInitialized) {
-            if (isActive) {
-              // This is the slide coming in
-              animationStyle =
-                direction === "right"
-                  ? slideAnimations.slideInRight
-                  : slideAnimations.slideInLeft;
-            } else {
-              // This is the slide going out
-              animationStyle =
-                direction === "right"
-                  ? slideAnimations.slideOutLeft
-                  : slideAnimations.slideOutRight;
-            }
-          }
-
-          // For non-visible slides during initialization, hide them but still render for measurement
-          const visibilityClass =
-            !isInitialized && !isActive ? "opacity-0 absolute" : "";
-
-          return (
-            <div
-              key={index}
-              ref={(el) => {
-                testimonialRefs.current[index] = el;
-                // If this is the initial active slide, update height once ref is set
-                if (isActive && el && !containerHeight) {
-                  setTimeout(() => updateHeight(), 0);
-                }
-              }}
-              className={`absolute top-0 left-0 w-full ${visibilityClass}`}
-              style={{
-                // Use visibility:hidden instead of display:none for non-active slides during initialization
-                // so they can still be measured
-                visibility: !isInitialized && !isActive ? "hidden" : "visible",
-                pointerEvents: !isActive && isInitialized ? "none" : "auto",
-                // Apply animation styles
-                ...animationStyle,
-              }}
-            >
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="flex-[0_0_100%] min-w-0">
               <blockquote className="text-xl md:text-2xl italic font-light mb-6">
                 "{testimonial.quote}"
               </blockquote>
@@ -281,8 +126,8 @@ export const ReferencesCarousel = () => {
                 </div>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
 
       <div className="flex justify-between items-center mt-2">
@@ -290,9 +135,9 @@ export const ReferencesCarousel = () => {
           {testimonials.map((_, index) => (
             <button
               key={index}
-              onClick={() => handleDotClick(index)}
+              onClick={() => scrollTo(index)}
               className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentIndex
+                index === selectedIndex
                   ? "bg-flamingo-400"
                   : "bg-gray-300 dark:bg-gray-700"
               }`}
@@ -303,14 +148,14 @@ export const ReferencesCarousel = () => {
 
         <div className="flex gap-2">
           <button
-            onClick={goToPrevious}
+            onClick={scrollPrev}
             className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
-            onClick={goToNext}
+            onClick={scrollNext}
             className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             aria-label="Next testimonial"
           >

@@ -7,10 +7,34 @@ export const HOVER_START_EVENT = "hover-start";
 export const HOVER_MOVE_EVENT = "hover-move";
 export const HOVER_END_EVENT = "hover-end";
 
-// Event interfaces
-interface VideoPlayRequest {
+interface VideoConfig {
   desktopPlaybackId: string;
   mobilePlaybackId: string;
+}
+
+type VideoSlug =
+  | "interim-cto"
+  | "inclusive-developer"
+  | "pragmatic-digital-builder";
+
+const videos: Record<VideoSlug, VideoConfig> = {
+  "interim-cto": {
+    desktopPlaybackId: "9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00",
+    mobilePlaybackId: "8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68",
+  },
+  "inclusive-developer": {
+    desktopPlaybackId: "9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00",
+    mobilePlaybackId: "8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68",
+  },
+  "pragmatic-digital-builder": {
+    desktopPlaybackId: "9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00",
+    mobilePlaybackId: "8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68",
+  },
+};
+
+// Event interfaces
+interface VideoPlayRequest {
+  videoSlug: VideoSlug;
   metadata?: {
     video_title?: string;
     video_id?: string;
@@ -28,14 +52,12 @@ interface HoverMovePayload {
 
 // Button component props
 interface VideoPlayerButtonProps {
-  desktopPlaybackId: string;
-  mobilePlaybackId: string;
+  videoSlug: VideoSlug;
   buttonText?: string;
 }
 
 export const VideoPlayerButton = ({
-  desktopPlaybackId,
-  mobilePlaybackId,
+  videoSlug,
   buttonText = "Play Video",
 }: VideoPlayerButtonProps) => {
   const [supportsHover, setSupportsHover] = React.useState(false);
@@ -51,7 +73,7 @@ export const VideoPlayerButton = ({
 
     // Dispatch custom event
     const event = new CustomEvent<VideoPlayRequest>(VIDEO_PLAY_EVENT, {
-      detail: { desktopPlaybackId, mobilePlaybackId },
+      detail: { videoSlug },
     });
 
     document.dispatchEvent(event);
@@ -60,7 +82,10 @@ export const VideoPlayerButton = ({
   const handleMouseEnter = () => {
     if (!supportsHover) return;
 
-    const gifUrl = `https://image.mux.com/${desktopPlaybackId}/animated.gif?start=11&end=16&width=640&fps=30`;
+    const video = videos[videoSlug];
+    if (!video) return;
+
+    const gifUrl = `https://image.mux.com/${video.desktopPlaybackId}/animated.gif?start=11&end=16&width=640&fps=30`;
 
     // Dispatch hover start event
     const event = new CustomEvent<HoverStartPayload>(HOVER_START_EVENT, {
@@ -163,15 +188,18 @@ export const HoverPreview = () => {
   );
 };
 
-export const VideoPlayer = () => {
+interface VideoPlayerProps {
+  videoSlug: VideoSlug;
+}
+
+export const VideoPlayer = ({ videoSlug }: VideoPlayerProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isPortrait, setIsPortrait] = React.useState(false);
   const playerRef = React.useRef<HTMLDivElement>(null);
   const muxPlayerRef = React.useRef<any>(null);
-
-  const [desktopPlaybackId, setDesktopPlaybackId] = React.useState("");
-  const [mobilePlaybackId, setMobilePlaybackId] = React.useState("");
   const [metadata, setMetadata] = React.useState({});
+
+  const video = videos[videoSlug];
 
   // Function to check orientation
   const checkOrientation = () => {
@@ -205,9 +233,9 @@ export const VideoPlayer = () => {
   React.useEffect(() => {
     const handleVideoPlay = async (e: Event) => {
       const customEvent = e as CustomEvent<VideoPlayRequest>;
+      if (customEvent.detail.videoSlug !== videoSlug) return;
+
       setIsOpen(true);
-      setDesktopPlaybackId(customEvent.detail.desktopPlaybackId);
-      setMobilePlaybackId(customEvent.detail.mobilePlaybackId);
       setMetadata(customEvent.detail.metadata || {});
 
       if (playerRef.current) {
@@ -228,7 +256,7 @@ export const VideoPlayer = () => {
     return () => {
       document.removeEventListener(VIDEO_PLAY_EVENT, handleVideoPlay);
     };
-  }, []);
+  }, [videoSlug]);
 
   // Handle orientation detection
   React.useEffect(() => {
@@ -255,6 +283,8 @@ export const VideoPlayer = () => {
       return () => window.removeEventListener("keydown", handleEscape);
     }
   }, [isOpen]);
+
+  if (!video) return null;
 
   return (
     <div
@@ -283,10 +313,13 @@ export const VideoPlayer = () => {
 
       <MuxPlayer
         ref={muxPlayerRef}
-        playbackId={isPortrait ? mobilePlaybackId : desktopPlaybackId}
+        playbackId={
+          isPortrait ? video.mobilePlaybackId : video.desktopPlaybackId
+        }
         metadata={metadata}
         autoPlay={false}
         loop={false}
+        preload="metadata"
         streamType="on-demand"
         accentColor="#ff4f1a"
         placeholder="none"

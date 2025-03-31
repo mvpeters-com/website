@@ -4,8 +4,8 @@ import "@/styles/globals.css";
 import "@/styles/fonts.css";
 import { ModeToggle } from "../components/mode-toggle";
 import Logo from "../components/Logo.astro";
-import { ReferralModal } from "../components/referral-modal";
 import { ReferencesCarousel } from "../components/ReferencesCarousel";
+
 import {
   HoverPreview,
   VideoPlayer,
@@ -40,7 +40,11 @@ import {
 
 <Layout>
   <main class="p-4 md:p-12 flex flex-col gap-12 md:gap-[96px]">
-    <VideoPlayer client:load />
+    <!-- Preload all video players -->
+    <VideoPlayer client:load videoSlug="interim-cto" />
+    <VideoPlayer client:load videoSlug="inclusive-developer" />
+    <VideoPlayer client:load videoSlug="pragmatic-digital-builder" />
+
     <HoverPreview client:load />
 
     <div class="flex justify-between align-middle">
@@ -57,19 +61,16 @@ import {
 
         <p class="text-3xl md:text-5xl md:leading-normal align-top max-w-4xl">
           I'm a full stack developer, <VideoPlayerButton
-            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
-            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
+            videoSlug="interim-cto"
             client:load
             buttonText="interim CTO"
           />, <VideoPlayerButton
-            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
-            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
+            videoSlug="inclusive-developer"
             client:load
             buttonText="inclusive developer"
           />, ai believer, ai sceptic, human technologist,
           <VideoPlayerButton
-            desktopPlaybackId="9iN02OeFuZV4Gz6slDLRY3E3tDS6NaqVxzlaMQDlZxG00"
-            mobilePlaybackId="8FuOEsucOCrJwIFlCXMDXscTwCtc66tGPGzj0100Vmu68"
+            videoSlug="pragmatic-digital-builder"
             client:load
             buttonText="pragmatic digital builder"
           /> and proud nerd.

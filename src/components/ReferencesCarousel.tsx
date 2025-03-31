@@ -16,16 +16,6 @@ interface Testimonial {
 // Same testimonials as in referrals.tsx
 const testimonials: Testimonial[] = [
   {
-    name: "Luc Heylen",
-    title: "Managing Partner",
-    company: "WeWantMore",
-    website: "https://wewantmore.studio",
-    email: "luc@wewantmore.studio",
-    quote:
-      "We were looking for a developer with the necessary technical skills, the right mindset, and a genuine interest in sustainability to help us develop the Monark app. Luckily, Simon was interested in our project—and he went the extra mile, which truly made a huge difference!",
-    avatar: "/referrals/luc.jpeg",
-  },
-  {
     name: "Paul De Lange",
     title: "Founder",
     company: "Calabi",
@@ -34,6 +24,16 @@ const testimonials: Testimonial[] = [
     quote:
       "Simon led the development of our complex software at Calabi for more than 2 years. His choices, methodology, and execution demonstrate not only a deep understanding of the technology but also of the end user. He is a hard and thorough worker, and through his ability to ask the right questions at the right moments, there is now a robust and intuitive application that is used daily by 100+ companies.",
     avatar: "/referrals/paul.jpeg",
+  },
+  {
+    name: "Luc Heylen",
+    title: "Managing Partner",
+    company: "WeWantMore",
+    website: "https://wewantmore.studio",
+    email: "luc@wewantmore.studio",
+    quote:
+      "We were looking for a developer with the necessary technical skills, the right mindset, and a genuine interest in sustainability to help us develop the Monark app. Luckily, Simon was interested in our project—and he went the extra mile, which truly made a huge difference!",
+    avatar: "/referrals/luc.jpeg",
   },
   {
     name: "Dieter Desmet",

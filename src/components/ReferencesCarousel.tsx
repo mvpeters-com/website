@@ -97,7 +97,7 @@ export const ReferencesCarousel = () => {
 
   return (
     <div className="w-full relative max-w-4xl">
-      <div className="text-3xl md:text-4xl font-bold mb-2">What people say</div>
+      <div className="text-4xl md:text-5xl font-bold mb-2">What people say</div>
 
       <div className="overflow-hidden -mx-4" ref={emblaRef}>
         <div className="flex mx-4">

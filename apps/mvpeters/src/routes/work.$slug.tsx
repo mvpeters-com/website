@@ -1,11 +1,15 @@
-import { createFileRoute, Link, notFound } from '@tanstack/react-router';
+import { createFileRoute, Link, notFound, redirect } from '@tanstack/react-router';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { ContactInvitation, Dot } from '../components/site-layout';
 import { MediaCaption, ProjectVisual, WalkthroughPlaceholder } from '../components/project-visual';
 import { findProject, projects } from '../content/projects';
-import { pageHead } from '../content/site';
+import { pageHead, workPublished } from '../content/site';
 
 export const Route = createFileRoute('/work/$slug')({
+  beforeLoad: ({ params }) => {
+    if (!findProject(params.slug)) throw notFound();
+    if (!workPublished) throw redirect({ to: '/', hash: 'currently-working-on', replace: true });
+  },
   loader: ({ params }) => { const project = findProject(params.slug); if (!project) throw notFound(); return { project }; },
   head: ({ loaderData }) => pageHead(`${loaderData?.project.title ?? 'Work'} — MVPeters`, loaderData?.project.summary ?? 'Selected work by Simon Peters.'),
   component: CaseStudy,

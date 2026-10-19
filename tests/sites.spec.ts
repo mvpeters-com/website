@@ -22,6 +22,17 @@ test('both sites render content and metadata on the server', async ({ request })
   const spacedHtml = await (await request.get(spaced)).text();
   expect(spacedHtml).toContain('href="https://www.commonsradio.eu/"');
   expect(spacedHtml).toContain('Ontdek Commons Radio');
+  const sitemap = await request.get(`${mvpeters}/sitemap.xml`);
+  expect(sitemap.status()).toBe(200);
+  expect(sitemap.headers()['content-type']).toContain('xml');
+  expect((await sitemap.text()).match(/<loc>.*?<\/loc>/g)).toEqual([
+    '<loc>https://www.mvpeters.com/</loc>',
+    '<loc>https://www.mvpeters.com/about</loc>',
+    '<loc>https://www.mvpeters.com/contact</loc>',
+  ]);
+  const robots = await request.get(`${mvpeters}/robots.txt`);
+  expect(robots.status()).toBe(200);
+  expect(await robots.text()).toContain('Sitemap: https://www.mvpeters.com/sitemap.xml');
 });
 
 test('MVPeters hydrates, switches theme, navigates recommendations and opens video', async ({ page }, testInfo) => {
@@ -45,11 +56,11 @@ test('MVPeters hydrates, switches theme, navigates recommendations and opens vid
   expect(carousel).not.toBeNull();
   expect(slide).not.toBeNull();
   expect(Math.abs(slide!.x - carousel!.x)).toBeLessThan(1);
-  await page.getByRole('button', { name: 'interim CTO', exact: true }).click();
+  await page.getByRole('button', { name: 'Watch the video', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).not.toBeVisible();
-  await expect(page.getByRole('button', { name: 'interim CTO', exact: true })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Watch the video', exact: true })).toBeFocused();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.evaluate(() => scrollTo(0, 0));
   if (process.env.CAPTURE_SCREENSHOTS) await page.screenshot({ path: testInfo.outputPath('mvpeters.png'), fullPage: true });
@@ -105,33 +116,68 @@ test('missing pages return 404 and offer a working route home', async ({ page })
   }
 });
 
-test('MVPeters concept connects work, all cases, about and email contact', async ({ page, request }) => {
+test('MVPeters launch shows current projects and keeps unfinished cases hidden', async ({ page, request }, testInfo) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto(mvpeters);
-  await expect(page.getByRole('complementary', { name: 'Concept preview' })).toBeVisible();
-  await expect(page.getByRole('region', { name: 'Highlighted case' }).getByRole('heading', { name: 'Shiperise' })).toBeVisible();
-  await expect(page.locator('details[open]')).toHaveCount(0);
-  await expect(page.locator('details > summary').last()).toHaveAttribute('aria-label', 'Details about Commons Radio');
-  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Work' }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Useful things.Built with care.');
-  await expect(page.locator('details[open]')).toHaveCount(0);
-  await expect(page.locator('details > summary')).toHaveCount(5);
-  for (const [slug, title] of [['shiperise', 'Shiperise'], ['club-gewoon-os', 'Club Gewoon OS'], ['niko', 'Niko'], ['dcw-platform', 'DCW platform'], ['switch-to-eu', 'Switch to EU'], ['commons-radio', 'Commons Radio']]) {
-    if (slug !== 'shiperise') await page.locator('summary').filter({ hasText: title }).click();
-    await page.getByRole('link', { name: `View ${title} case study`, exact: true }).click();
-    await expect(page).toHaveURL(`${mvpeters}/work/${slug}`);
-    await expect(page.getByRole('heading', { name: title, exact: true, level: 1 })).toBeVisible();
-    await expect(page.getByText('Draft story for review.', { exact: true })).toBeVisible();
-    await expect(page.getByText('Video placeholder — footage to add', { exact: true })).toBeVisible();
-    await page.reload();
-    await expect(page.getByRole('heading', { name: title, exact: true, level: 1 })).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.getByRole('link', { name: 'All work', exact: true }).click();
+  await expect(page.getByRole('complementary', { name: 'Concept preview' })).toHaveCount(0);
+  await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
+  await expect(page.locator('a[href^="/work"]')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'interim CTO', exact: true })).toHaveCount(0);
+  const projects = page.getByRole('region', { name: 'Client work.' });
+  await expect(projects.getByRole('heading', { level: 3 })).toHaveText(['Shiperise', 'Club Gewoon', 'Niko', 'DCW', 'Calabi']);
+  const sideProjects = page.locator('details').filter({ has: page.getByText('Side projects', { exact: true }) });
+  await expect(sideProjects).not.toHaveAttribute('open');
+  await expect(page.getByRole('link', { name: 'Visit Switch to EU', exact: true })).toHaveCount(0);
+  const html = await (await request.get(mvpeters)).text();
+  for (const href of ['https://www.switch-to.eu/en', 'https://www.commonsradio.eu/']) {
+    expect(html).toContain(`href="${href}"`);
   }
+  await page.evaluate(() => document.fonts.ready);
+  if (process.env.CAPTURE_SCREENSHOTS) await page.locator('#currently-working-on').screenshot({ path: testInfo.outputPath('client-work-closed.png') });
+  await sideProjects.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(sideProjects).toHaveAttribute('open', '');
+  if (process.env.CAPTURE_SCREENSHOTS) await page.locator('#currently-working-on').screenshot({ path: testInfo.outputPath('side-projects-open.png') });
+  await expect(sideProjects.getByRole('heading', { level: 3 })).toHaveText(['Switch to EU', 'Commons Radio']);
+  for (const [label, href] of [
+    ['Visit Shiperise', 'https://www.shiperise.com/'],
+    ['Visit Club Gewoon', 'https://www.clubgewoon.be/'],
+    ['Visit DCW', 'https://doccredit.world/'],
+    ['Visit Calabi', 'https://calabi.be/'],
+    ['See the configurator', 'https://www.niko.eu/en/inspiration/news/2026/rocker-toggle-configurator'],
+    ['Visit Switch to EU', 'https://www.switch-to.eu/en'],
+    ['Listen to Commons Radio', 'https://www.commonsradio.eu/'],
+  ]) {
+    const link = page.locator('#currently-working-on').getByRole('link', { name: label });
+    await expect(link).toHaveAttribute('href', href);
+    await expect(link).not.toHaveAttribute('rel', /nofollow/);
+  }
+  await page.getByRole('button', { name: 'Watch the video', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Simon as interim CTO' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Watch the video', exact: true })).toBeFocused();
+  await sideProjects.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(sideProjects).not.toHaveAttribute('open');
+  await page.getByRole('link', { name: 'What I’m working on', exact: true }).click();
+  await expect(page).toHaveURL(`${mvpeters}/#currently-working-on`);
+  for (const path of ['/work', '/work/', '/work/shiperise', '/work/club-gewoon-os', '/work/niko', '/work/dcw-platform', '/work/switch-to-eu', '/work/commons-radio']) {
+    const response = await request.get(`${mvpeters}${path}`, { maxRedirects: 0 });
+    expect(response.status()).toBe(307);
+    expect(response.headers().location).toBe(path === '/work/' ? '/work' : '/#currently-working-on');
+    expect(await response.text()).not.toContain('Draft story for review.');
+  }
+  await page.goto(`${mvpeters}/work/shiperise`);
+  await expect(page).toHaveURL(`${mvpeters}/#currently-working-on`);
+  await expect(projects).toBeVisible();
   await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'About' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('A pragmatic builder.');
+  await expect(page.locator('main')).not.toContainText(/Story slot|Draft story|placeholder/);
   await expect(page.getByRole('link', { name: 'Download my CV' })).toHaveAttribute('href', '/CV.pdf');
+  await expect(page.locator('a[href^="/work"]')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'From Spaced to MVPeters.' })).toHaveCount(0);
   await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Contact' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('something useful.');
   await expect(page.getByRole('link', { name: 'Email me about a project' })).toHaveAttribute('href', /^mailto:simon@mvpeters.com\?subject=/);

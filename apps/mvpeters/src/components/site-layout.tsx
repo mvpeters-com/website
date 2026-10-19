@@ -2,7 +2,7 @@ import { Link, Outlet } from '@tanstack/react-router';
 import { ArrowUpRight } from 'lucide-react';
 import { Logo } from './Logo';
 import { ModeToggle } from './mode-toggle';
-import { conceptPreview, email, projectEmail } from '../content/site';
+import { conceptPreview, email, projectEmail, workPublished } from '../content/site';
 
 export function SiteLayout() {
   return <div className="mx-auto max-w-[1600px] px-5 md:px-12">
@@ -10,7 +10,7 @@ export function SiteLayout() {
       <Link to="/" aria-label="MVPeters home" className="shrink-0"><Logo /></Link>
       <div className="flex items-center gap-4 sm:gap-8">
         <nav aria-label="Main navigation" className="flex gap-4 text-base sm:gap-8 sm:text-lg">
-          <Link to="/work" className="nav-link" activeProps={{ className: 'nav-link underline' }}>Work</Link>
+          {workPublished && <Link to="/work" className="nav-link" activeProps={{ className: 'nav-link underline' }}>Work</Link>}
           <Link to="/about" className="nav-link" activeProps={{ className: 'nav-link underline' }}>About</Link>
           <Link to="/contact" className="nav-link" activeProps={{ className: 'nav-link underline' }}>Contact</Link>
         </nav>
@@ -21,7 +21,7 @@ export function SiteLayout() {
     <Outlet />
     <footer className="mt-20 flex flex-col gap-8 border-t border-foreground/20 pt-8 pb-10 text-base md:mt-32 md:flex-row md:items-end md:justify-between md:text-lg">
       <div className="space-y-3"><p>Good ideas deserve a working version.</p><a href={projectEmail} className="inline-flex items-center gap-2">{email}<ArrowUpRight size={18} aria-hidden="true" /></a></div>
-      <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-6 gap-y-3"><Link to="/work">Work</Link><Link to="/about">About</Link><Link to="/contact">Contact</Link><a href="/CV.pdf" download>CV</a></nav>
+      <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-6 gap-y-3">{workPublished && <Link to="/work">Work</Link>}<Link to="/about">About</Link><Link to="/contact">Contact</Link><a href="/CV.pdf" download>CV</a></nav>
     </footer>
   </div>;
 }

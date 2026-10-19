@@ -126,10 +126,11 @@ Primary actions and project-media frames have square corners. Thin horizontal ru
 
 - **Primary action:** a solid, square link with an arrow, body type (18px), a minimum height (48px), and the frontmatter padding. Use its theme-specific fill/text pair and hover fill. It is the recurring project-conversation action.
 - **Text links:** underlined primary-colored text. Navigation and large linked project titles are deliberate exceptions: foreground-colored text gains primary color on hover; the active main-navigation item is underlined.
-- **Main navigation:** Work, About, and Contact sit beside the logo and theme control. Links have a minimum interactive height (44px); spacing grows from (16px) to (32px) at the small breakpoint.
+- **Main navigation:** About and Contact sit beside the logo and theme control. Work appears only when its content is published. Links have a minimum interactive height (44px); spacing grows from (16px) to (32px) at the small breakpoint.
 - **Theme control:** a ghost icon button shows the sun in light mode and moon in dark mode, with a neutral hover surface. It updates the root theme and saves the preference when storage is available; the initial theme otherwise follows the system.
 - **Project preview:** a substantial media figure with a caption, a heading, short description, type label, and underlined case link. It is an open grid row, not a bordered or elevated card. Media uses a frame aspect ratio (1.5). Keep actual captures and illustrative interfaces visibly identified.
 - **Collapsed project row:** a native disclosure with a project title, type, and plus icon that rotates when expanded. Expanded content uses the same media/text split as a project preview. Keyboard focus and disclosure state use the browser's native summary behavior.
+- **Launch project list:** open client rows pair a heading with a short description and underlined external links. One native Side projects disclosure contains both side-project rows, with their HTML present while closed. It uses the same typography and fine rules; no preview media or case links appear until those cases are ready.
 - **Section dot:** one fixed-orange circle, growing from (16px) to (24px) at medium widths, separates major blocks without a decorative background.
 - **Recommendations and video:** retain the existing testimonial carousel, round portraits, explicit carousel controls, and interim CTO video interaction. Project walkthrough placeholders are flat tonal blocks, visibly labeled as placeholders.
 

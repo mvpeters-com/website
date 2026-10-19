@@ -20,14 +20,21 @@ technical leadership work. Specific industries and company stages remain open.
 
 ## Capabilities and Constraints
 
-The agreed structure is Home, Work, six individual case studies, About, and
-Contact. The named projects are Shiperise, Club Gewoon OS, Niko, DCW platform,
-Switch to EU, and Commons Radio. Roles, scope, collaborators, outcomes, dates, and publishable media
-still need confirmation. This is an explicitly labeled proof of concept with
-draft text and illustrative interfaces, as requested by Simon.
+The launch structure is Home, About, and Contact. Home lists client work:
+Shiperise, Club Gewoon, Niko, DCW, and Calabi. Each links to its client website;
+Niko links to its public configurator project. Calabi also opens the existing
+interim CTO video. Switch to EU and Commons Radio appear under a collapsed
+Side projects disclosure. Their descriptions and ordinary external links must
+be server-rendered, including while collapsed, so they remain crawlable.
+
+The Work index and draft case studies are temporarily hidden and redirect to
+the homepage project list. Keep the case-study scaffolding for later releases,
+when roles, scope, collaborators, outcomes, dates, and media are confirmed.
+Do not expose placeholders or illustrative interfaces in the launch version.
 
 The development branch is `codex/mvpeters-dev`; its Vercel preview is the review
-surface. Production deploys from `main` and is outside this concept release.
+surface. Simon has asked to launch the simplified version; production deploys
+through the reviewed pull request into `main`.
 
 ## Brand Commitments
 

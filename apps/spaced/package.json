@@ -12,15 +12,16 @@
   "dependencies": {
     "@tanstack/react-router": "catalog:",
     "@tanstack/react-start": "catalog:",
+    "@vercel/analytics": "catalog:",
     "@website/ui": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@website/config": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@website/config": "workspace:*",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
     "vite": "^8.3.4"

@@ -1,0 +1,10 @@
+{
+  "name": "@website/config", "private": true, "type": "module",
+  "exports": { "./vite": "./src/vite.ts", "./tsconfig": "./tsconfig.base.json" },
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "dependencies": {
+    "@tailwindcss/vite": "catalog:", "@tanstack/react-start": "catalog:",
+    "@vitejs/plugin-react": "catalog:", "nitro": "catalog:", "vite": "^8.3.4"
+  },
+  "devDependencies": { "@types/node": "catalog:", "typescript": "catalog:" }
+}

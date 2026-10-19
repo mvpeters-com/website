@@ -1,20 +1,8 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "./packages/config/tsconfig.base.json",
+  "compilerOptions": { "types": ["node"] },
   "include": [
-    ".astro/types.d.ts",
-    "**/*"
-  ],
-  "exclude": [
-    "dist"
-  ],
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
-  }
+    "playwright.config.ts",
+    "tests/**/*.ts"
+  ]
 }

@@ -7,5 +7,5 @@ export function ModeToggle() {
     try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch { /* Theme still works without storage. */ }
   }
 
-  return <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme"><Sun aria-hidden="true" className="dark:hidden" /><Moon aria-hidden="true" className="hidden dark:block" /></Button>;
+  return <Button variant="ghost" size="icon" className="text-foreground hover:text-foreground" onClick={toggleTheme} aria-label="Toggle theme"><Sun aria-hidden="true" className="dark:hidden" /><Moon aria-hidden="true" className="hidden dark:block" /></Button>;
 }

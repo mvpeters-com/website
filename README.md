@@ -108,3 +108,6 @@ This setup follows Vercel’s [TanStack Start integration](https://vercel.com/do
 and [monorepo configuration](https://vercel.com/docs/monorepos).
 
 See [migration notes](docs/migration.md) for the retained behavior and source archives.
+
+For MVPeters' next version, use the `codex/mvpeters-dev` branch and its Vercel
+Preview deployment. See the [development review workflow](docs/development.md).

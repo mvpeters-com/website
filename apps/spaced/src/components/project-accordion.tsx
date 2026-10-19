@@ -23,8 +23,14 @@ export function ProjectAccordion({ project, defaultOpen }: { project: Project; d
       <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" className="col-start-2 row-start-1 transition-transform group-open:rotate-45 md:col-start-4"><path d="M4 12h16M12 4v16" /></svg>
     </summary>
     <div className="pb-10">
-      <div ref={gallery} role="region" aria-label={`Beelden van ${project.title}`} tabIndex={0} className="flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-4">
-        {project.images.map((image, index) => <img key={image} src={`/images/${image}`} srcSet={imageSources(image)} sizes="(max-width: 767px) 80vw, 600px" alt={`${project.title} — projectbeeld ${index + 1}`} width="1498" height="1000" loading="lazy" className="aspect-[1.5] w-[80vw] max-w-[600px] shrink-0 snap-start object-contain md:w-[42vw]" />)}
+      <div ref={gallery} role="region" aria-label={`Beelden van ${project.title}`} tabIndex={0} className="flex snap-x snap-mandatory items-center gap-5 overflow-x-auto overscroll-x-contain pb-4">
+        {project.images.map((image, index) => {
+          const { src, alt, width, height } = typeof image === 'string'
+            ? { src: image, alt: `${project.title} — projectbeeld ${index + 1}`, width: 1498, height: 1000 }
+            : image;
+          const portrait = width < height;
+          return <img key={src} src={`/images/${src}`} srcSet={imageSources(src, width)} sizes={portrait ? '(max-width: 767px) 25vw, 185px' : '(max-width: 767px) 80vw, 600px'} alt={alt} width={width} height={height} loading="lazy" className={`shrink-0 snap-start object-contain ${portrait ? 'h-[53vw] max-h-[400px] w-auto md:h-[28vw]' : 'aspect-[1.5] w-[80vw] max-w-[600px] md:w-[42vw]'}`} />;
+        })}
       </div>
       {project.images.length > 1 && <div className="mt-3 flex justify-end gap-2">
         <Button variant="ghost" size="icon" onClick={() => scroll(-1)} aria-label={`Vorige beelden van ${project.title}`}><Arrow direction="left" /></Button>
@@ -40,8 +46,8 @@ export function ProjectAccordion({ project, defaultOpen }: { project: Project; d
 }
 
 // Use the original Webflow image variants without requesting absent sizes.
-function imageSources(image: string) {
+function imageSources(image: string, width: number) {
   const base = image.replace('.png', '');
   if (image === 'ikbendaar-4.png') return undefined;
-  return `/images/${base}-p-500.png 500w, /images/${image} 1498w`;
+  return `/images/${base}-p-500.png 500w, /images/${image} ${width}w`;
 }

@@ -1,3 +1,10 @@
+export interface ProjectScreenshot {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export interface Project {
   title: string;
   kind: string;
@@ -6,7 +13,7 @@ export interface Project {
   description: string;
   services: string;
   url: string;
-  images: readonly string[];
+  images: readonly (string | ProjectScreenshot)[];
   linkLabel?: string;
 }
 
@@ -18,7 +25,33 @@ export const projects: readonly Project[] = [
     description: 'Hoe maken we onafhankelijke radio van over de hele wereld toegankelijk op één plek? Commons Radio brengt onafhankelijke en communityradio samen, gratis en zonder account.',
     services: 'Web Development, Applicatieontwikkeling',
     url: 'https://www.commonsradio.eu/',
-    images: ['commons-radio.png'],
+    images: [
+      'commons-radio.png',
+      {
+        src: 'commons-radio-ipad-collection.png',
+        alt: 'Commons Radio op iPad — de Daily Driver Radio-collectie met stations en de radiospeler',
+        width: 1600,
+        height: 1200,
+      },
+      {
+        src: 'commons-radio-iphone-listen.png',
+        alt: 'Commons Radio op iPhone — samengestelde collecties en onafhankelijke radiostations',
+        width: 600,
+        height: 1303,
+      },
+      {
+        src: 'commons-radio-iphone-player.png',
+        alt: 'Commons Radio op iPhone — de radiospeler met Oroko Radio en de stations in een collectie',
+        width: 600,
+        height: 1303,
+      },
+      {
+        src: 'commons-radio-ipad-station.png',
+        alt: 'Commons Radio op iPad — Eruption Radio met het uitzendschema en de radiospeler',
+        width: 1600,
+        height: 1200,
+      },
+    ],
     linkLabel: 'Ontdek Commons Radio',
   },
   {

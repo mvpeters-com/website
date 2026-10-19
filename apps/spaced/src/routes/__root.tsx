@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { createRootRoute, HeadContent, Link, Outlet, Scripts } from '@tanstack/react-router';
+import { Analytics } from '@vercel/analytics/react';
 import { SkipLink } from '@website/ui/skip-link';
 import styles from '../styles/app.css?url';
 
@@ -29,5 +30,5 @@ export const Route = createRootRoute({
 });
 
 function Document({ children }: { children: ReactNode }) {
-  return <html lang="nl"><head><HeadContent /></head><body><SkipLink>Ga naar de inhoud</SkipLink>{children}<Scripts /></body></html>;
+  return <html lang="nl"><head><HeadContent /></head><body><SkipLink>Ga naar de inhoud</SkipLink>{children}<Scripts /><Analytics /></body></html>;
 }

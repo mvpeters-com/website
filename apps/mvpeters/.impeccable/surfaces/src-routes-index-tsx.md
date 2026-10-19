@@ -31,7 +31,7 @@ label illustrative interfaces and unverified narratives as concept material.
 Voice correction: prefer the original role-list introduction, simple service
 descriptions, and “Interested? Contact me at…” over new slogans or generic
 product-development prose. About uses the original client references and tools.
-Keep the release in preview while Simon reviews this copy.
+Simon has approved the revised copy and layout for release to main.
 
 Case sequence: product summary; role/team; starting point; decisions; screenshots
 and video slot; verified outcomes slot; next case; contact. No fabricated metrics

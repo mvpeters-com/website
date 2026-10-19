@@ -44,8 +44,8 @@ and pragmatic kite/spacecraft philosophy.
 Copy should stay close to Simon's original writing: direct, personal, technically
 specific, and a little nerdy. Reuse his own introduction and contact language.
 Avoid agency taglines, generic sales promises, and invented personal philosophy.
-Publication is on hold while Simon reviews the revised copy; update the preview
-without merging the release pull request.
+Simon has approved the revised copy and layout for release through the pull
+request into main.
 
 ## Evidence on Hand
 

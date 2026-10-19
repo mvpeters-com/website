@@ -16,8 +16,31 @@ the next version before release. The Vercel project is `website`, with app root
    production deployment; pushing this development branch does not publish to
    `mvpeters.com`.
 
-The initial preview is a baseline of the existing website. Page structure is
-being shaped before the new pages and case-study content are implemented.
+## Proof of concept
+
+The development preview now contains the agreed page structure:
+
+- `/`: product-development introduction, selected work, services, approach,
+  existing testimonials, and project contact.
+- `/work`: the four named projects.
+- `/work/commons-radio`, `/work/club-gewoon-os`, `/work/niko`, and
+  `/work/dcw-platform`: a common case-study structure with context, role/team
+  slots, decisions, media, outcomes, and next-project navigation.
+- `/about`: background, working philosophy, Spaced transition, tools, and CV.
+- `/contact`: email-first project contact with a prefilled email draft.
+
+Project copy lives in `apps/mvpeters/src/content/projects.ts`. The project names
+are confirmed; unverified narratives are marked as draft. Commons Radio uses
+existing screenshots in `apps/mvpeters/public/work/`. The other projects use
+code-rendered illustrative interfaces. Video sections are labeled placeholders;
+the existing interim CTO video and testimonials remain functional.
+
+`conceptPreview` in `apps/mvpeters/src/content/site.ts` enables the concept notice
+and `noindex, nofollow` metadata. Keep it enabled while this is review material.
+Before a production release, replace draft text and illustrative interfaces,
+confirm roles/results, supply approved media, and then disable concept mode.
+
+Review preview: <https://website-git-codex-mvpeters-dev-spacedbe1.vercel.app/>.
 
 See Vercel's [generated URL documentation](https://vercel.com/docs/deployments/generated-urls)
 for the distinction between branch and commit preview links.

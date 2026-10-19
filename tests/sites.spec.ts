@@ -104,3 +104,32 @@ test('missing pages return 404 and offer a working route home', async ({ page })
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   }
 });
+
+test('MVPeters concept connects work, all cases, about and email contact', async ({ page, request }) => {
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  await page.goto(mvpeters);
+  await expect(page.getByRole('complementary', { name: 'Concept preview' })).toBeVisible();
+  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Work' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Useful things.Built with care.');
+  for (const [slug, title] of [['commons-radio', 'Commons Radio'], ['club-gewoon-os', 'Club Gewoon OS'], ['niko', 'Niko'], ['dcw-platform', 'DCW platform']]) {
+    await page.getByRole('link', { name: `View ${title} case study`, exact: true }).click();
+    await expect(page).toHaveURL(`${mvpeters}/work/${slug}`);
+    await expect(page.getByRole('heading', { name: title, exact: true, level: 1 })).toBeVisible();
+    await expect(page.getByText('Draft story for review.', { exact: true })).toBeVisible();
+    await expect(page.getByText('Video placeholder — footage to add', { exact: true })).toBeVisible();
+    await page.reload();
+    await expect(page.getByRole('heading', { name: title, exact: true, level: 1 })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.getByRole('link', { name: 'All work', exact: true }).click();
+  }
+  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'About' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('A pragmatic builder.');
+  await expect(page.getByRole('link', { name: 'Download my CV' })).toHaveAttribute('href', '/CV.pdf');
+  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Contact' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('something useful.');
+  await expect(page.getByRole('link', { name: 'Email me about a project' })).toHaveAttribute('href', /^mailto:simon@mvpeters.com\?subject=/);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect((await request.get(`${mvpeters}/work/missing-project`)).status()).toBe(404);
+  expect(errors).toEqual([]);
+});

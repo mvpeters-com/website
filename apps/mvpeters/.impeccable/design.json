@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-19T10:49:36Z",
+  "title": "Design System: MVPeters",
+  "extensions": {
+    "motion": [
+      {
+        "name": "color-transition-duration",
+        "value": "150ms",
+        "purpose": "Existing action and control color transitions."
+      },
+      {
+        "name": "color-transition-easing",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Existing default transition easing."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Project action",
+      "kind": "button",
+      "refersTo": "action-link",
+      "description": "The square primary project-conversation link, using the active theme's source variables.",
+      "html": "<a class=\"ds-action\" href=\"mailto:simon@mvpeters.com\">Tell me about your project<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></a>",
+      "css": ".ds-action{display:inline-flex;align-items:center;justify-content:center;gap:12px;width:fit-content;min-height:48px;padding:12px 24px;background:var(--primary,#b42800);color:var(--primary-foreground,#fff);font:400 18px/28px var(--brand-body,\"articulat-cf\",system-ui,sans-serif);text-decoration:none;transition:color 150ms cubic-bezier(.4,0,.2,1),background-color 150ms cubic-bezier(.4,0,.2,1)}.ds-action:hover{background:var(--color-flamingo-700,#811c00)}:host-context(.dark) .ds-action:hover{background:var(--color-flamingo-200,#ff9c7e)}.ds-action:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-action{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Content link",
+      "kind": "custom",
+      "description": "Ordinary underlined links carry the theme's primary color.",
+      "html": "<a class=\"ds-link\" href=\"/work\">See my work</a>",
+      "css": ".ds-link{color:var(--primary,#b42800);font:400 18px/28px var(--brand-body,\"articulat-cf\",system-ui,sans-serif);text-decoration:underline}.ds-link:focus-visible{outline:2px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Main navigation",
+      "kind": "nav",
+      "description": "Visible text navigation with an underlined active item and primary-colored hover.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"/work\" aria-current=\"page\">Work</a><a href=\"/about\">About</a><a href=\"/contact\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;gap:16px;font:400 16px/24px var(--brand-body,\"articulat-cf\",system-ui,sans-serif)}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--foreground,#0a0a0a);text-decoration:none;text-underline-offset:4px}.ds-nav a[aria-current=page]{text-decoration:underline}.ds-nav a:hover{color:var(--primary,#b42800)}.ds-nav a:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(min-width:640px){.ds-nav{gap:32px;font-size:18px;line-height:28px}}"
+    },
+    {
+      "name": "Theme control",
+      "kind": "button",
+      "refersTo": "theme-toggle",
+      "description": "The existing ghost icon control; this snippet previews appearance and states without theme-switching logic.",
+      "html": "<button class=\"ds-theme\" type=\"button\" aria-label=\"Toggle theme\"><svg class=\"ds-sun\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42\"/></svg><svg class=\"ds-moon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.442.402.785a6.25 6.25 0 0 0 8.268 8.268c.344-.215.808-.004.803.419\"/></svg></button>",
+      "css": ".ds-theme{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;padding:0;border:0;border-radius:6px;background:transparent;color:var(--foreground,#0a0a0a);cursor:pointer;transition:background-color 150ms cubic-bezier(.4,0,.2,1)}.ds-theme:hover{background:var(--accent,#f5f5f5)}.ds-theme:focus-visible{outline:none;box-shadow:0 0 0 2px var(--background,#fff),0 0 0 4px var(--ring,#0a0a0a)}.ds-moon{display:none}:host-context(.dark) .ds-sun{display:none}:host-context(.dark) .ds-moon{display:block}@media(prefers-reduced-motion:reduce){.ds-theme{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Section dot",
+      "kind": "custom",
+      "description": "The recurring fixed-orange punctuation between major content blocks.",
+      "html": "<div class=\"ds-dot\" aria-hidden=\"true\"></div>",
+      "css": ".ds-dot{width:16px;height:16px;margin-block:48px;border-radius:2147483647px;background:var(--color-flamingo-400,#ff4f1a)}@media(min-width:768px){.ds-dot{width:24px;height:24px;margin-block:80px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Why build a spacecraft, when a nice kite will do?",
+    "overview": "Keep the established MVPeters identity: a personal, pragmatic voice expressed through large type, generous space, a simple logo-led header, and direct links. The typography carries the interface; portfolio media carries the work. This record describes the completed concept's reusable visual system, rather than proposing a new identity.",
+    "keyCharacteristics": [
+      "Rajdhani headings paired with Articulat body text.",
+      "White or deep red canvases, high-contrast text, and flamingo orange punctuation.",
+      "Open sections, fine rules, underlined links, and square primary actions.",
+      "Simple navigation and substantial, clearly captioned project media."
+    ],
+    "rules": [
+      {
+        "name": "The Theme Pairing Rule",
+        "body": "Theme changes update the canvas, text, primary action fill, and primary action text together; the logo and section dots retain their fixed orange.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Font Rule",
+        "body": "Preserve the Rajdhani/Articulat role split; fonts inside an illustrative product interface do not establish another site-wide type role.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do preserve the logo, Rajdhani/Articulat pairing, and both established themes.",
+      "Do let type, space, fine rules, and portfolio media establish hierarchy.",
+      "Do retain underlined content links and theme-specific primary action pairings.",
+      "Do label illustrative interfaces and unverified project content clearly."
+    ],
+    "donts": [
+      "Don't promote illustrative client-interface colors or components into the site-wide system.",
+      "Don't turn open project rows into a rounded, elevated card grid.",
+      "Don't replace the simple text navigation or orange section dots with a new visual language."
+    ]
+  }
+}

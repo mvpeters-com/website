@@ -23,7 +23,7 @@ The initial public version contains:
 - `/`: product-development introduction, client work, side projects, services, approach,
   existing testimonials, and project contact.
 - `/about`: background, working philosophy, tools, and CV.
-- `/contact`: email-first project contact with a prefilled email draft.
+- `/contact`: direct email contact and CV download.
 
 Launch project copy and external links live in
 `apps/mvpeters/src/content/current-projects.ts`. Client work lists Shiperise,

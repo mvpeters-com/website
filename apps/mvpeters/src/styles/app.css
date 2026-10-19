@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "@website/ui/styles.css";
+@import "./fonts.css";
+@source "../../../../packages/ui/src";
+
+@layer base {
+  :root {
+    --brand-body: "articulat-cf", system-ui, sans-serif;
+    --brand-heading: "Rajdhani", system-ui, sans-serif;
+    --primary: #b42800;
+  }
+  .dark { --primary: #ff754c; --primary-foreground: #210200; }
+  a { @apply text-primary underline; }
+}

@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "@website/ui/styles.css";
+@source "../../../../packages/ui/src";
+
+@font-face {
+  font-family: "Neue Haas Display";
+  src: url("/fonts/NeueHaasDisplay-Roman.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Display";
+  src: url("/fonts/NeueHaasDisplay-Mediu.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lunchtype Expanded";
+  src: url("/fonts/Lunchtype24-Regular-Expanded.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@theme {
+  --color-ivory: #fffbea;
+  --color-spaced-orange: #ff6400;
+}
+
+@layer base {
+  :root {
+    --brand-body: "Neue Haas Display", system-ui, sans-serif;
+    --brand-heading: "Lunchtype Expanded", system-ui, sans-serif;
+    --background: #fffdf5;
+    --foreground: #000;
+    --primary: #000;
+    --primary-foreground: #fffdf5;
+    --accent: #fffbea;
+    --accent-foreground: #000;
+    --border: #000;
+    --ring: #000;
+  }
+}

@@ -1,0 +1,16 @@
+.git
+**/.git
+node_modules
+**/node_modules
+.vercel
+**/.vercel
+**/.output
+**/.tanstack
+**/.nitro
+.migration-backups
+webflow-spaced
+test-results
+playwright-report
+.vscode
+.env*
+**/.env*

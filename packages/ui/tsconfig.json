@@ -1,0 +1,1 @@
+{ "extends": "@website/config/tsconfig", "include": ["src"] }

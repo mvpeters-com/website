@@ -1,0 +1,16 @@
+{
+  "name": "@website/ui", "private": true, "type": "module", "sideEffects": ["**/*.css"],
+  "exports": { "./*": "./src/*.tsx", "./utils": "./src/utils.ts", "./styles.css": "./src/styles.css" },
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "dependencies": {
+    "@radix-ui/react-dialog": "catalog:", "@radix-ui/react-dropdown-menu": "catalog:",
+    "@radix-ui/react-icons": "catalog:", "@radix-ui/react-label": "catalog:",
+    "@radix-ui/react-slot": "catalog:", "class-variance-authority": "catalog:",
+    "clsx": "catalog:", "tailwind-merge": "catalog:", "tw-animate-css": "catalog:"
+  },
+  "peerDependencies": { "react": "^19.3.1", "react-dom": "^19.3.1", "tailwindcss": "^4.3.3" },
+  "devDependencies": {
+    "@website/config": "workspace:*", "@types/react": "catalog:",
+    "@types/react-dom": "catalog:", "typescript": "catalog:"
+  }
+}

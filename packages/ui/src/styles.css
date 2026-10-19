@@ -1,0 +1,100 @@
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-body: var(--brand-body, system-ui, sans-serif);
+  --font-heading: var(--brand-heading, system-ui, sans-serif);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@theme {
+  --color-flamingo-50: #ffe8de;
+  --color-flamingo-100: #ffc2b0;
+  --color-flamingo-200: #ff9c7e;
+  --color-flamingo-300: #ff754c;
+  --color-flamingo-400: #ff4f1a;
+  --color-flamingo-500: #e63500;
+  --color-flamingo-600: #b42800;
+  --color-flamingo-700: #811c00;
+  --color-flamingo-800: #4f0f00;
+  --color-flamingo-900: #210200;
+}
+
+@layer base {
+  :root {
+    --background: #fff;
+    --foreground: #0a0a0a;
+    --primary: #ff4f1a;
+    --primary-foreground: #fff;
+    --card: #fff;
+    --card-foreground: #0a0a0a;
+    --popover: #fff;
+    --popover-foreground: #0a0a0a;
+    --secondary: #f5f5f5;
+    --secondary-foreground: #171717;
+    --muted: #f5f5f5;
+    --muted-foreground: #737373;
+    --accent: #f5f5f5;
+    --accent-foreground: #171717;
+    --destructive: #c91c1c;
+    --destructive-foreground: #fff;
+    --border: #e5e5e5;
+    --input: #e5e5e5;
+    --ring: #0a0a0a;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: hsl(4 100% 6%);
+    --foreground: #fff;
+    --card: #0a0a0a;
+    --card-foreground: #fafafa;
+    --popover: #0a0a0a;
+    --popover-foreground: #fafafa;
+    --secondary: #262626;
+    --secondary-foreground: #fafafa;
+    --muted: #262626;
+    --muted-foreground: #a3a3a3;
+    --accent: #262626;
+    --accent-foreground: #fafafa;
+    --border: #404040;
+    --input: #404040;
+    --ring: #d4d4d4;
+  }
+
+  * { @apply border-border; }
+  html { @apply font-body; scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground; min-height: 100svh; }
+  h1, h2, h3, h4, h5, h6 { @apply font-heading; text-wrap: balance; }
+  button, summary { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}

@@ -24,3 +24,15 @@ pnpm-debug.log*
 .idea/
 .vercel/
 .react-email/
+# Monorepo build and local state
+.output/
+.tanstack/
+.nitro/
+.env.*
+!.env.example
+playwright-report/
+test-results/
+
+# Original local source backups, retained during the migration.
+.migration-backups/
+webflow-spaced/

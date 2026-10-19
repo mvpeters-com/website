@@ -42,8 +42,10 @@ and has no migrated submission endpoint. The visible email contact still works.
 Legacy `/index.html` links redirect permanently to `/`.
 
 Commons Radio is included as a featured project with a server-rendered link to
-`https://www.commonsradio.eu/` and a capture of its public homepage. The project
-link is crawlable without JavaScript and is not marked `nofollow`.
+`https://www.commonsradio.eu/`, a capture of its public homepage, and four saved
+iPhone/iPad screenshots showing listening, playback, a collection, and a station.
+The phone screenshots retain their portrait proportions in the gallery. The
+project link is crawlable without JavaScript and is not marked `nofollow`.
 
 On the first visit in a browser session, a dismissible announcement explains that
 Spaced is now MVPeters and links to `https://mvpeters.com`. Closing it, continuing

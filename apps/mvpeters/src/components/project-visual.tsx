@@ -3,6 +3,8 @@ import type { Project } from '../content/projects';
 
 export function ProjectVisual({ project, detail = false }: { project: Project; detail?: boolean }) {
   if (project.mock === 'radio') return <div className="project-visual radio-visual"><img src="/work/commons-radio.png" alt="Commons Radio website with curated collections and independent radio stations" width="1498" height="1000" loading="lazy" className="h-full w-full object-cover object-top" /></div>;
+  const platformRows = project.mock === 'shiperise' ? ['A product idea', 'A working prototype', 'A useful first release', 'The next iteration'] : project.mock === 'eu' ? ['Explore categories', 'Find an alternative', 'Compare the options', 'Make a choice'] : ['A new idea', 'The working version', 'The next improvement', 'Ready for review'];
+  const platformTitle = project.mock === 'shiperise' ? (detail ? 'From idea to daily use.' : 'A product, taking shape.') : project.mock === 'eu' ? (detail ? 'The options, side by side.' : 'A different way forward.') : (detail ? 'The details, connected.' : 'Keep the bigger picture.');
   return <div className={`project-visual mock-${project.mock}`} role="img" aria-label={`Illustrative interface for ${project.title}; not actual project footage`}>
     <div className="sample-window" aria-hidden="true">
       <div className="sample-toolbar"><span className="flex items-center gap-2"><Circle size={8} fill="currentColor" /><Circle size={8} /><Circle size={8} /></span><span>Interface study</span><Search size={13} /></div>
@@ -12,7 +14,7 @@ export function ProjectVisual({ project, detail = false }: { project: Project; d
       </div> : project.mock === 'niko' ? <div className="sample-product">
         <div className="sample-product-copy"><h3>{detail ? 'A smaller next step.' : 'Simple on the surface.'}</h3><p>Clear choices.<br />A little less friction.</p><div className="sample-line" /><div className="sample-line short" /><span className="sample-pill">Explore the details <ArrowUpRight size={13} /></span></div>
         <div className="sample-object" aria-hidden="true"><div /><div /><span /></div>
-      </div> : <div className="sample-platform"><div className="flex items-end justify-between gap-3"><div><h3>{detail ? 'The details, connected.' : 'Keep the bigger picture.'}</h3></div><span className="sample-status">All work</span></div><div className="sample-table"><div className="sample-table-head"><span>Work</span><span>Stage</span><span>Next step</span></div>{['A new idea', 'The working version', 'The next improvement', 'Ready for review'].map((text, i) => <div className="sample-table-row" key={text}><span>{text}</span><span><i className={`status-dot status-${i}`} />{['Discovery', 'In progress', 'Planned', 'Review'][i]}</span><ArrowUpRight size={14} /></div>)}</div></div>}
+      </div> : <div className="sample-platform"><div className="flex items-end justify-between gap-3"><div><h3>{platformTitle}</h3></div><span className="sample-status">All work</span></div><div className="sample-table"><div className="sample-table-head"><span>Work</span><span>Stage</span><span>Next step</span></div>{platformRows.map((text, i) => <div className="sample-table-row" key={text}><span>{text}</span><span><i className={`status-dot status-${i}`} />{['Discovery', 'In progress', 'Planned', 'Review'][i]}</span><ArrowUpRight size={14} /></div>)}</div></div>}
     </div>
   </div>;
 }

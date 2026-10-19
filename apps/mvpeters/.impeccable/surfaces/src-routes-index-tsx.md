@@ -7,13 +7,17 @@ related_targets: ["src/routes/work.index.tsx","src/routes/work.$slug.tsx","src/r
 
 # MVPeters concept
 
-Scope: Home, Work index, four case pages, About, Contact. Home/Contact persuade;
+Scope: Home, Work index, six case pages, About, Contact. Home/Contact persuade;
 Work/cases let people experience the work; About explains Simon's approach.
 
 Confirmed: hands-on product development leads; AI engineering and CTO experience
 support it. The primary action is emailing Simon about a project. Named projects
-are Commons Radio, Club Gewoon OS, Niko, and DCW platform. User approved a dummy
+are Shiperise, Club Gewoon OS, Niko, DCW platform, Switch to EU, and Commons Radio. User approved a dummy
 content proof of concept before gathering full content.
+
+Home and Work have one highlighted case, Shiperise. All other project rows start
+collapsed and can expand to show a visual, summary, and case link. Commons Radio
+is always the last project in the list.
 
 Preserve existing logo, display/body fonts, white and dark themes, orange accent,
 personal English voice, generous space, and kite/spacecraft philosophy. Add a

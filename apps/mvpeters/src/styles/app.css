@@ -31,10 +31,12 @@
 
 /* Sample product interfaces are illustrations, not representations of client UI. */
 .project-visual { aspect-ratio: 1.5; width: 100%; overflow: hidden; container-type: inline-size; }
-.mock-club, .mock-niko, .mock-dcw { padding: 5cqw; }
+.mock-club, .mock-niko, .mock-dcw, .mock-shiperise, .mock-eu { padding: 5cqw; }
 .mock-club { background: #e8b8cc; }
 .mock-niko { background: #f2a782; }
 .mock-dcw { background: #b6cecc; }
+.mock-shiperise { background: #c9c6df; }
+.mock-eu { background: #bacbe0; }
 .sample-window { height: 100%; overflow: hidden; color: #182426; background: #fbfcf8; font-size: 1.65cqw; line-height: 1.5; border: 1px solid #182426; }
 .sample-window h3 { font-family: var(--brand-body); font-size: 4cqw; line-height: 1.1; font-weight: 500; text-wrap: initial; }
 .sample-toolbar { display: flex; align-items: center; justify-content: space-between; height: 5cqw; padding: 0 2cqw; border-bottom: 1px solid #d3d9d6; font-size: 1.4cqw; }

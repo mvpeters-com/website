@@ -110,9 +110,15 @@ test('MVPeters concept connects work, all cases, about and email contact', async
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto(mvpeters);
   await expect(page.getByRole('complementary', { name: 'Concept preview' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Highlighted case' }).getByRole('heading', { name: 'Shiperise' })).toBeVisible();
+  await expect(page.locator('details[open]')).toHaveCount(0);
+  await expect(page.locator('details > summary').last()).toHaveAttribute('aria-label', 'Details about Commons Radio');
   await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Work' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Useful things.Built with care.');
-  for (const [slug, title] of [['commons-radio', 'Commons Radio'], ['club-gewoon-os', 'Club Gewoon OS'], ['niko', 'Niko'], ['dcw-platform', 'DCW platform']]) {
+  await expect(page.locator('details[open]')).toHaveCount(0);
+  await expect(page.locator('details > summary')).toHaveCount(5);
+  for (const [slug, title] of [['shiperise', 'Shiperise'], ['club-gewoon-os', 'Club Gewoon OS'], ['niko', 'Niko'], ['dcw-platform', 'DCW platform'], ['switch-to-eu', 'Switch to EU'], ['commons-radio', 'Commons Radio']]) {
+    if (slug !== 'shiperise') await page.locator('summary').filter({ hasText: title }).click();
     await page.getByRole('link', { name: `View ${title} case study`, exact: true }).click();
     await expect(page).toHaveURL(`${mvpeters}/work/${slug}`);
     await expect(page.getByRole('heading', { name: title, exact: true, level: 1 })).toBeVisible();

@@ -22,9 +22,10 @@ The development preview now contains the agreed page structure:
 
 - `/`: product-development introduction, selected work, services, approach,
   existing testimonials, and project contact.
-- `/work`: the four named projects.
-- `/work/commons-radio`, `/work/club-gewoon-os`, `/work/niko`, and
-  `/work/dcw-platform`: a common case-study structure with context, role/team
+- `/work`: Shiperise highlighted, with the other five project rows collapsed.
+  Home uses the same listing. Commons Radio appears last.
+- `/work/shiperise`, `/work/club-gewoon-os`, `/work/niko`, `/work/dcw-platform`,
+  `/work/switch-to-eu`, and `/work/commons-radio`: a common case-study structure with context, role/team
   slots, decisions, media, outcomes, and next-project navigation.
 - `/about`: background, working philosophy, Spaced transition, tools, and CV.
 - `/contact`: email-first project contact with a prefilled email draft.
